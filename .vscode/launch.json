@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/keysibrunoarroyo/projects/CS2keysibruno/CS2keysibruno",
+      "program": "/Users/keysibrunoarroyo/projects/CS2keysibruno/CS2keysibruno/build/Debug/outDebug"
+    }
+  ]
+}
