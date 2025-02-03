@@ -36,7 +36,7 @@ void readBoard(Cell* board[][10], size_t boardSize) {
 
     ifstream file(filename);  
     if (!file) {
-        cerr << "Error bro!, try again. " << endl;
+        cerr << "Error!, try again. " << endl;
         exit(1);
     }
 
