@@ -2,7 +2,7 @@
 
 void clearScreen()
 {
-    system("clear");  // I use Mac
+    system("clear");  // I use Mac, so...
 }
 
 /*
