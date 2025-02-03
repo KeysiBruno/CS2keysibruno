@@ -12,3 +12,9 @@ Notes: Not yet!
 
 # Lab 3
 ... Not yet
+
+# Lab 4
+ ....
+
+ # Lab 5
+ ....
