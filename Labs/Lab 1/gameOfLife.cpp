@@ -81,6 +81,9 @@ Must use the x, y position stored with each cell to determine which neighbors th
 
 void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
 {
+//This logic was really diffucult that I got helped by JeffDoder(youtube chanel)
+// So, this logic might not count as mine
+
     int x = curCell->x;
     int y = curCell->y;
 
@@ -117,9 +120,10 @@ Return if you updated cells or not to break out of while loop from main.
 */
 bool updateCellState(Cell* board[][10], size_t boardSize)
 {
-    bool changed = false;
-    int newStates[10][10] = {};
+    int newStates[10][10];
 
+    bool changed = false;
+    
     for (int i = 0; i < boardSize; i++) 
     {
         for (int j = 0; j < boardSize; j++) 
@@ -128,13 +132,27 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
 
             int neighbors = board[i][j]->numLiveNeighbors;
 
-            if (board[i][j]->state == 1) 
+            if (board[i][j]->state==1) 
             {
-                newStates[i][j] = (neighbors == 2 || neighbors == 3) ? 1 : 0;
+               if(neighbors == 2 || neighbors == 3) 
+                {
+                   newStates[i][j] = 1;
+                }
+                else
+                {
+                   newStates[i][j] = 0;
+                }
             } 
             else 
             {
-                newStates[i][j] = (neighbors == 3) ? 1 : 0;
+                if(neighbors == 3)
+                {
+                    newStates[i][j] = 1;
+                }
+                else
+                {
+                    newStates[i][j] = 0;
+                }
             }
 
             if (newStates[i][j] != board[i][j]->state)
