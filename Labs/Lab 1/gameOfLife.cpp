@@ -40,14 +40,16 @@ void readBoard(Cell* board[][10], size_t boardSize)
     ifstream file(filename);
 
     if (!file) {
-        cout << "Error opening file." << endl;
+        cout << "Error! try again." << endl;
         return;
     }
 
-    for (int i = 0; i < boardSize; i++) {
+    for (int i = 0; i < boardSize; i++) 
+    {
         string line;
         getline(file, line);
-        for (int j = 0; j < boardSize && j < line.length(); j++) {
+        for (int j = 0; j < boardSize; j++) 
+        {
             board[i][j]->state = line[j] - '0';
         }
     }
@@ -59,8 +61,10 @@ Function to print out all cells to cout
 */
 void printCells(Cell* board[][10], size_t boardSize)
 {
-    for (int i = 0; i < boardSize; i++) {
-        for (int j = 0; j < boardSize; j++) {
+    for (int i = 0; i < boardSize; i++) 
+    {
+        for (int j = 0; j < boardSize; j++) 
+        {
             cout << (board[i][j]->state ? "■ " : "□ ");
         }
         cout << endl;
@@ -76,14 +80,19 @@ Must use the x, y position stored with each cell to determine which neighbors th
 
 void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
 {
-    int x = curCell->x, y = curCell->y;
+    int x = curCell->x;
+    int y = curCell->y;
+
     curCell->numLiveNeighbors = 0;
 
-    for (int dx = -1; dx <= 1; dx++) {
-        for (int dy = -1; dy <= 1; dy++) {
+    for (int dx = -1; dx <= 1; dx++) 
+    {
+        for (int dy = -1; dy <= 1; dy++) 
+        {
             if (dx == 0 && dy == 0) continue;
             int nx = x + dx, ny = y + dy;
-            if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize) {
+            if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize) 
+            {
                 curCell->numLiveNeighbors += board[nx][ny]->state;
             }
         }
@@ -107,25 +116,34 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
     bool changed = false;
     int newStates[10][10] = {};
 
-    for (int i = 0; i < boardSize; i++) {
-        for (int j = 0; j < boardSize; j++) {
+    for (int i = 0; i < boardSize; i++) 
+    {
+        for (int j = 0; j < boardSize; j++) 
+        {
             findNumNeighbors(board, boardSize, board[i][j]);
+
             int neighbors = board[i][j]->numLiveNeighbors;
 
-            if (board[i][j]->state == 1) {
+            if (board[i][j]->state == 1) 
+            {
                 newStates[i][j] = (neighbors == 2 || neighbors == 3) ? 1 : 0;
-            } else {
+            } 
+            else 
+            {
                 newStates[i][j] = (neighbors == 3) ? 1 : 0;
             }
 
-            if (newStates[i][j] != board[i][j]->state) {
+            if (newStates[i][j] != board[i][j]->state)
+            {
                 changed = true;
             }
         }
     }
 
-    for (int i = 0; i < boardSize; i++) {
-        for (int j = 0; j < boardSize; j++) {
+    for (int i = 0; i < boardSize; i++) 
+    {
+        for (int j = 0; j < boardSize; j++) 
+        {
             board[i][j]->state = newStates[i][j];
         }
     }
