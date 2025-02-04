@@ -5,7 +5,7 @@ Function to clear terminal depending on OS
 */
 void clearScreen()
 {
-    system("clear");  // I use Mac, so...
+    system("clear"); // I use Mac
 }
 
 /*
@@ -32,7 +32,7 @@ Function to read the board from a file
 Prompt for the file to read inside of the function
 Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 */
-void readBoard(Cell* board[][10], int boardSize)
+void readBoard(Cell* board[][10], size_t boardSize)
 {
     string filename;
     cout << "Enter filename: ";
@@ -57,7 +57,7 @@ void readBoard(Cell* board[][10], int boardSize)
 /*
 Function to print out all cells to cout
 */
-void printCells(Cell* board[][10], int boardSize)
+void printCells(Cell* board[][10], size_t boardSize)
 {
     for (int i = 0; i < boardSize; i++) {
         for (int j = 0; j < boardSize; j++) {
@@ -74,7 +74,7 @@ Function to count the number of live neighbors for each cell.
 Must use the x, y position stored with each cell to determine which neighbors they have
 */
 
-void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell)
+void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
 {
     int x = curCell->x, y = curCell->y;
     curCell->numLiveNeighbors = 0;
@@ -102,7 +102,7 @@ Any dead cell with exactly three live neighbors becomes a live cell, as if by re
 
 Return if you updated cells or not to break out of while loop from main.
 */
-bool updateCellState(Cell* board[][10], int boardSize)
+bool updateCellState(Cell* board[][10], size_t boardSize)
 {
     bool changed = false;
     int newStates[10][10] = {};
