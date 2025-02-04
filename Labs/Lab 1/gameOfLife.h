@@ -1,23 +1,15 @@
 #pragma once
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-// Cell structure for each cell in the board
 struct Cell
 {
-    int x, y;              // Coordinates of the cell
-    int state;             // State of the cell (0 = dead, 1 = alive)
-    int numLiveNeighbors;  // Number of live neighbors
-
-    // Constructor to initialize values
-    Cell() {
-        x = 0;
-        y = 0;
-        state = 0;
-        numLiveNeighbors = 0;
-    }
+    int x, y;
+    int state;
+    int numLiveNeighbors = 0;
 };
 
 /*
@@ -27,66 +19,38 @@ void clearScreen();
 
 /*
 Function to initialize all cells in the board.
+Takes in 2D array of pointers and size of array
+Should create structs and populate the array
 */
-void initCells(Cell* board[][10], size_t boardSize);
+void initCells(Cell* board[][10], int boardSize);
 
 /*
-Function to read the board from a file.
+Function to read the board from a file
+Prompt for the file to read inside of the function
+Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 */
-void readBoard(Cell* board[][10], size_t boardSize);
+void readBoard(Cell* board[][10], int boardSize);
 
 /*
-Function to print out all cells to cout.
+Function to print out all cells to cout
 */
-void printCells(Cell* board[][10], size_t boardSize);
-
-/*
-Function to count the number of live neighbors for each cell.
-*/
-void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell);
-
-/*
-Function to update each cell's state based on Game of Life rules.
-*/
-bool updateCellState(Cell* board[][10], size_t boardSize);
-
-/*
-Function to deallocate memory for dynamically allocated cells.
-*/
-void cleanupBoard(Cell* board[][10], size_t boardSize);
-
-
-/*
-Function to clear terminal depending on OS
-*/
-void clearScreen();
-
-/*
-Function to initialize all cells in the board.
-*/
-void initCells(Cell* board[][10], size_t boardSize);
-
-/*
-Function to read the board from a file.
-*/
-void readBoard(Cell* board[][10], size_t boardSize);
-
-/*
-Function to print out all cells to cout.
-*/
-void printCells(Cell* board[][10], size_t boardSize);
+void printCells(Cell* board[][10], int boardSize);
 
 /*
 Function to count the number of live neighbors for each cell.
+Must use the x, y position stored with each cell to determine which neighbors they have
 */
-void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell);
+void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell);
 
 /*
-Function to update each cell's state based on Game of Life rules.
-*/
-bool updateCellState(Cell* board[][10], size_t boardSize);
+Function to update each cell's state based on number of neighbors
+Must use following rules:
 
-/*
-Function to deallocate memory for dynamically allocated cells.
+Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+Any live cell with two or three live neighbors lives on to the next generation.
+Any live cell with more than three live neighbors dies, as if by overpopulation.
+Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+
+Return if you updated cells or not to break out of while loop from main.
 */
-void cleanupBoard(Cell* board[][10], size_t boardSize);
+bool updateCellState(Cell* board[][10], int boardSize);

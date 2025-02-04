@@ -1,5 +1,8 @@
 #include "gameOfLife.h"
 
+/*
+Function to clear terminal depending on OS
+*/
 void clearScreen()
 {
     system("clear");  // I use Mac, so...
@@ -29,111 +32,102 @@ Function to read the board from a file
 Prompt for the file to read inside of the function
 Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 */
-void readBoard(Cell* board[][10], size_t boardSize) {
+void readBoard(Cell* board[][10], int boardSize)
+{
     string filename;
     cout << "Enter filename: ";
     cin >> filename;
+    ifstream file(filename);
 
-    ifstream file(filename);  
     if (!file) {
-        cerr << "Error!, try again. " << endl;
-        exit(1);
+        cout << "Error opening file." << endl;
+        return;
     }
 
-    for (size_t i = 0; i < boardSize; i++) {
+    for (int i = 0; i < boardSize; i++) {
         string line;
-        file >> line;  
-        for (size_t j = 0; j < boardSize; j++) {
-            board[i][j]->state = line[j] - '0';  // Converting char from '0' or '1' to int
+        getline(file, line);
+        for (int j = 0; j < boardSize && j < line.length(); j++) {
+            board[i][j]->state = line[j] - '0';
         }
     }
-
-    file.close();  
+    file.close();
 }
 
-// Function to print all cells to cout
-void printCells(Cell* board[][10], size_t boardSize)
+/*
+Function to print out all cells to cout
+*/
+void printCells(Cell* board[][10], int boardSize)
 {
-    for (size_t i = 0; i < boardSize; i++)
-    {
-        for (size_t j = 0; j < boardSize; j++)
-        {
-            cout << (board[i][j]->state ? 'O' : '.');  // 'O' for alive, '.' for dead
+    for (int i = 0; i < boardSize; i++) {
+        for (int j = 0; j < boardSize; j++) {
+            cout << (board[i][j]->state ? "■ " : "□ ");
         }
         cout << endl;
     }
     cout << endl;
 }
 
-// Function to count the number of live neighbors for each cell
-void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
+
+/*
+Function to count the number of live neighbors for each cell.
+Must use the x, y position stored with each cell to determine which neighbors they have
+*/
+
+void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell)
 {
-    int x = curCell->x;
-    int y = curCell->y;
+    int x = curCell->x, y = curCell->y;
     curCell->numLiveNeighbors = 0;
 
-    for (int dx = -1; dx <= 1; dx++)
-    {
-        for (int dy = -1; dy <= 1; dy++)
-        {
-            if (dx == 0 && dy == 0) continue;  // Skip the current cell itself
-
-            int nx = x + dx;
-            int ny = y + dy;
-
-            // Check if the neighbor is within bounds
-            if (nx >= 0 && ny >= 0 && nx < (int)boardSize && ny < (int)boardSize)
-            {
+    for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) {
+            if (dx == 0 && dy == 0) continue;
+            int nx = x + dx, ny = y + dy;
+            if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize) {
                 curCell->numLiveNeighbors += board[nx][ny]->state;
             }
         }
     }
 }
 
-// Function to update each cell's state based on Game of Life rules
-bool updateCellState(Cell* board[][10], size_t boardSize) {
+
+/*
+Function to update each cell's state based on number of neighbors
+Must use following rules:
+
+Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+Any live cell with two or three live neighbors lives on to the next generation.
+Any live cell with more than three live neighbors dies, as if by overpopulation.
+Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+
+Return if you updated cells or not to break out of while loop from main.
+*/
+bool updateCellState(Cell* board[][10], int boardSize)
+{
     bool changed = false;
+    int newStates[10][10] = {};
 
-    // First pass: Count the live neighbors for each cell
-    for (size_t i = 0; i < boardSize; i++) {
-        for (size_t j = 0; j < boardSize; j++) {
+    for (int i = 0; i < boardSize; i++) {
+        for (int j = 0; j < boardSize; j++) {
             findNumNeighbors(board, boardSize, board[i][j]);
-        }
-    }
+            int neighbors = board[i][j]->numLiveNeighbors;
 
-    // Second pass: Update the state of each cell based on the Game of Life rules
-    for (size_t i = 0; i < boardSize; i++) {
-        for (size_t j = 0; j < boardSize; j++) {
-            Cell* cell = board[i][j];
-            int liveNeighbors = cell->numLiveNeighbors;
-            int prevState = cell->state;
-
-            if (cell->state == 1) {  // Cell is alive
-                if (liveNeighbors < 2 || liveNeighbors > 3) {
-                    cell->state = 0;  // Dies due to underpopulation or overpopulation
-                }
-            } else {  // Cell is dead
-                if (liveNeighbors == 3) {
-                    cell->state = 1;  // Becomes alive due to reproduction
-                }
+            if (board[i][j]->state == 1) {
+                newStates[i][j] = (neighbors == 2 || neighbors == 3) ? 1 : 0;
+            } else {
+                newStates[i][j] = (neighbors == 3) ? 1 : 0;
             }
 
-            if (prevState != cell->state) changed = true;  // Track if any cell changed
+            if (newStates[i][j] != board[i][j]->state) {
+                changed = true;
+            }
         }
     }
 
+    for (int i = 0; i < boardSize; i++) {
+        for (int j = 0; j < boardSize; j++) {
+            board[i][j]->state = newStates[i][j];
+        }
+    }
     return changed;
-}
-
-// Function to clean up dynamically allocated memory for the board
-void cleanupBoard(Cell* board[][10], size_t boardSize)
-{
-    for (size_t i = 0; i < boardSize; i++)
-    {
-        for (size_t j = 0; j < boardSize; j++)
-        {
-            delete board[i][j];  // Free the memory for each cell
-            board[i][j] = nullptr;  // Set the pointer to nullptr
-        }
-    }
 }
