@@ -39,7 +39,8 @@ void readBoard(Cell* board[][10], size_t boardSize)
     cin >> filename;
     ifstream file(filename);
 
-    if (!file) {
+    if (!file) 
+    {
         cout << "Error! try again." << endl;
         return;
     }
@@ -90,7 +91,9 @@ void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
         for (int dy = -1; dy <= 1; dy++) 
         {
             if (dx == 0 && dy == 0) continue;
+
             int nx = x + dx, ny = y + dy;
+
             if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize) 
             {
                 curCell->numLiveNeighbors += board[nx][ny]->state;
