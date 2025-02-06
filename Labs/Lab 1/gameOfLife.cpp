@@ -47,11 +47,11 @@ void readBoard(Cell* board[][10], size_t boardSize)
 
     for (int i = 0; i < boardSize; i++) 
     {
-        string line;
-        getline(file, line);
+        string copy;
+        getline(file, copy);
         for (int j = 0; j < boardSize; j++) 
         {
-            board[i][j]->state = line[j] - '0';
+            board[i][j]->state = copy[j] - '0';
         }
     }
     file.close();
