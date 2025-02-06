@@ -21,6 +21,7 @@ void initCells(Cell* board[][10], size_t boardSize)
         {
             // Cell *board[][] was already created, so i´m reserving memory.
             board[i][j] = new Cell(); 
+
             board[i][j]->x = i;
             board[i][j]->y = j;
         }
@@ -34,15 +35,18 @@ Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 */
 void readBoard(Cell* board[][10], size_t boardSize)
 {
+    ifstream file;
     string filename;
-    cout << "Enter filename: ";
-    cin >> filename;
-    ifstream file(filename);
 
-    if (!file) 
+    cout << "Enter filename: ";
+    getline(cin, filename);
+
+    file.open(filename.c_str());
+
+    if (file.fail()) 
     {
         cout << "Error! try again." << endl;
-        return;
+        exit(1);
     }
 
     for (int i = 0; i < boardSize; i++) 
@@ -51,7 +55,7 @@ void readBoard(Cell* board[][10], size_t boardSize)
         getline(file, copy);
         for (int j = 0; j < boardSize; j++) 
         {
-            board[i][j]->state = copy[j] - '0';
+            board[i][j]->state = copy[j] - '0';//char to int, because from th file '0' or '1' are char, and I need integers.
         }
     }
     file.close();
