@@ -41,7 +41,7 @@ void readBoard(Cell* board[][10], size_t boardSize)
     cout << "Enter filename: ";
     getline(cin, filename);
 
-    file.open(filename.c_str());
+    file.open(filename);
 
     if (file.fail()) 
     {
@@ -53,8 +53,10 @@ void readBoard(Cell* board[][10], size_t boardSize)
     {
         string copy;
         getline(file, copy);
+
         for (int j = 0; j < boardSize; j++) 
         {
+            //the copy has the entire file in a line, so the positions are columns
             board[i][j]->state = copy[j] - '0';//char to int, because from th file '0' or '1' are char, and I need integers.
         }
     }
