@@ -56,7 +56,7 @@ void readBoard(Cell* board[][10], size_t boardSize)
 
         for (int j = 0; j < boardSize; j++) 
         {
-            //the copy has the entire file in a line, so the positions are columns
+            //the copy has the entire file in a line, so the positions are now the columns(j);
             board[i][j]->state = copy[j] - '0';//char to int, because from th file '0' or '1' are char, and I need integers.
         }
     }
@@ -72,7 +72,7 @@ void printCells(Cell* board[][10], size_t boardSize)
     {
         for (int j = 0; j < boardSize; j++) 
         {
-            cout << (board[i][j]->state ? "■ " : "□ ");
+            cout << (board[i][j]->state ? "0 " : ". ");
         }
         cout << endl;
     }

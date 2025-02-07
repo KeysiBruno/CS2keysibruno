@@ -54,3 +54,5 @@ Any dead cell with exactly three live neighbors becomes a live cell, as if by re
 Return if you updated cells or not to break out of while loop from main.
 */
 bool updateCellState(Cell* board[][10], size_t boardSize);
+
+
