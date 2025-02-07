@@ -72,7 +72,7 @@ void printCells(Cell* board[][10], size_t boardSize)
     {
         for (int j = 0; j < boardSize; j++) 
         {
-            cout << (board[i][j]->state ? "0 " : ". ");
+            cout << (board[i][j]->state ? "$ " : ". ");//I like dolar
         }
         cout << endl;
     }
@@ -128,7 +128,7 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
 {
     int newStates[10][10];
 
-    bool changed = false;
+    bool changing = false;
     
     for (int i = 0; i < boardSize; i++) 
     {
@@ -136,7 +136,8 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
         {
             findNumNeighbors(board, boardSize, board[i][j]);
 
-            int neighbors = board[i][j]->numLiveNeighbors;
+            int neighbors;
+            neighbors = board[i][j]->numLiveNeighbors;
 
             if (board[i][j]->state==1) 
             {
@@ -163,7 +164,7 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
 
             if (newStates[i][j] != board[i][j]->state)
             {
-                changed = true;
+                changing = true;
             }
         }
     }
@@ -175,5 +176,5 @@ bool updateCellState(Cell* board[][10], size_t boardSize)
             board[i][j]->state = newStates[i][j];
         }
     }
-    return changed;
+    return changing;
 }
