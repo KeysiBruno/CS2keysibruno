@@ -104,7 +104,7 @@ void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
             int aux1 = i + x;
             int aux2 = j + y;
 
-            if (aux1>= 0 && aux1 < boardSize && aux2 >= 0 && aux2 < boardSize) 
+            if (aux1>= 0 && aux1<10 && aux2 >= 0 && aux2<10) 
             {
                 curCell->numLiveNeighbors += board[aux1][aux2]->state;
             }
