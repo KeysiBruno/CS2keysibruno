@@ -87,8 +87,36 @@ Must use the x, y position stored with each cell to determine which neighbors th
 
 void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
 {
-      int x = curCell->x;
+    //I got helped by JeffCoder to use this logic
+    /* My aptmet: But didnt run
+    int x = curCell->x;
     int y = curCell->y;
+
+    curCell->numLiveNeighbors = 0;
+
+    for (int a=0; a<boardSize; a++)
+    {
+    for(int b=0; b< boardSize; b++)
+    {
+           for (int i = -1; i <= 1; i++) 
+           {
+              for (int j = -1;  j<= 1; j++) 
+             {
+           
+                if (!(i == 0 && j == 0))
+                {
+                   if(board[a+i][b+j]->state==1)
+                   {
+                      curCell->numLiveNeighbors++;
+                   }
+                }
+              }
+            }
+    }
+    }
+    */
+      int x = curCell->x;
+     int y = curCell->y;
 
     curCell->numLiveNeighbors = 0;
 
