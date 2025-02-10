@@ -72,7 +72,7 @@ void printCells(Cell* board[][10], size_t boardSize)
     {
         for (int j = 0; j < boardSize; j++) 
         {
-            cout << (board[i][j]->state ? "$ " : ". ");//I like dolar
+            cout << (board[i][j]->state ? "° " : ". ");//I like dolar
         }
         cout << endl;
     }
@@ -87,33 +87,30 @@ Must use the x, y position stored with each cell to determine which neighbors th
 
 void findNumNeighbors(Cell* board[][10], size_t boardSize, Cell* curCell)
 {
-//My aptent
-
-    int x = curCell->x;
+      int x = curCell->x;
     int y = curCell->y;
 
     curCell->numLiveNeighbors = 0;
 
-    for (x =0; x<boardSize; x++)
+    for (int i = -1; i <= 1; i++) 
     {
-    for(y=0; y< boardSize; y++)
-    {
-           for (int i = -1; i <= 1; i++) 
-           {
-              for (int j = -1;  j<= 1; j++) 
-             {
-           
-                if (!(i == 0 && j == 0))
+        for (int j = -1; j <= 1; j++) 
+        {
+            if (i == 0 && j == 0) continue;  
+
+            int a = x + i;
+            int b = y + j;
+
+            if (a >= 0 && a < boardSize && b >= 0 && b < boardSize) 
+            {
+                if (board[a][b]->state == 1)
                 {
-                   if(board[x+i][y+j]->state==1)
-                   {
-                      curCell->numLiveNeighbors++;
-                   }
+                    curCell->numLiveNeighbors++;
                 }
-              }
             }
+        }
     }
-    }
+
 }
 
 
