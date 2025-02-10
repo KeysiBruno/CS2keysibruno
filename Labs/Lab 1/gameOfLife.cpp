@@ -72,7 +72,7 @@ void printCells(Cell* board[][10], size_t boardSize)
     {
         for (int j = 0; j < boardSize; j++) 
         {
-            cout << (board[i][j]->state ? "° " : ". ");//I like dolar
+            cout << (board[i][j]->state ? "† " : ". ");
         }
         cout << endl;
     }
