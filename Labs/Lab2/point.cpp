@@ -27,9 +27,10 @@ points::Point* points::Point::getNearestPoint()
 
 points::Point* points::Point::calcNearestPoint(Point* pointList[], unsigned long arrSize)
 {  
-     double fake_distance = 99999;
+    //kajsdbhad
      double _distance;
-     Point *Nearest_Point;
+
+    double fake_distance = 99999;
 
       while(arrSize > 0)
       {
