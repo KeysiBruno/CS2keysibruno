@@ -28,19 +28,27 @@ points::Point* points::Point::getNearestPoint()
 points::Point* points::Point::calcNearestPoint(Point* pointList[], unsigned long arrSize)
 {  
      double _distance;
+     Point *_point = nullptr; //this will be the nearest point
+    double fake_dis = 999999999; 
+     if(arrSize==0)
+     {
+        cout << "Array empty. " << endl;
+        return 0;
+     }
 
-    double fake_distance = 99999;
+     for(int i = 0; i<arrSize; i++)
+     {
+          if(pointList[i] ==_point) continue;
+          _distance = distPoints(*pointList[i]);
 
-      while(arrSize > 0)
-      {
-         for(int i=0; i<arrSize; i++)
-         {
-            
-         }
-      }
+          if(_distance < fake_dis)
+          {
+              fake_dis = _distance;
+              _point = pointList[i];
+          }
+     }
 
-
-    return nullptr;
+    return _point;
 }
 
 //Setters
