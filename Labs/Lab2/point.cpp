@@ -1,4 +1,5 @@
 #include "point.h"
+using namespace std;
 
 //Constructor
 points::Point::Point(int X, int Y, points::Point* closestPoint) : x(X), y(Y), nearestPoint(closestPoint)
