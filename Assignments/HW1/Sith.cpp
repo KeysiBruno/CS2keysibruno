@@ -1,5 +1,4 @@
 #include "starwars.h"
-#include <fstream>
 
 using namespace std;
 
