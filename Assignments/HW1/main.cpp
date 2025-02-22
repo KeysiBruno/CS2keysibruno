@@ -17,7 +17,7 @@ int main()
     j1->loadFromFile();
 
     cout<<"        FIGHT: ";
-    cout<<"/n Both are attaking each other... ";
+    cout<<"\n Both are attaking each other... ";
     
     while(j1->getHealth()>0 && s1->getHealth() >0)
     {
@@ -32,7 +32,6 @@ int main()
     {
         cout<<"\n"<<s1->getName()<<" won!. "<<endl;
     }
-
 
     delete j1;
     delete s1;
