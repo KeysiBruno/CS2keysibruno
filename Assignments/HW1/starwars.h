@@ -26,12 +26,12 @@ namespace starwars
         int getForcePower();
 
         //Methods
-        void attack();
-        int useForce(int);
-        int takeDamage(int);
+        int attack();
+        void useForce(int);
+        void takeDamage(int);
 
-        void saveToFile(string);
-        void loadFromFile(string);
+        void saveToFile();
+        void loadFromFile();
     };
 
     class Sith
@@ -52,5 +52,9 @@ namespace starwars
         string getName();
         int getHealth();
         int getLigthsaberSkill();
+
+        int attack();
+        void useForce(int);
+        void takeDamage(int);
     };
 }

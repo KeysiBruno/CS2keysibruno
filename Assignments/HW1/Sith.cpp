@@ -30,3 +30,11 @@ int starwars::Sith::getLigthsaberSkill()
 {
     return lightsaberSkill;
 }
+int starwars::Sith::attack()
+{
+     return lightsaberSkill;
+}
+ void starwars::Sith::takeDamage(int damage)
+{
+     health=health-damage;
+}

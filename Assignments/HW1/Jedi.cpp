@@ -1,4 +1,5 @@
 #include "starwars.h"
+#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -38,38 +39,43 @@ using namespace std;
  }
 
  //Methods
- void starwars::Jedi::attack()
+ int starwars::Jedi::attack()
  {
-     cout<<name<<" has "<<lightsaberSkill<<" of light saber skill. "<<endl;
+     return lightsaberSkill;
  }
- int starwars::Jedi::useForce(int power)
+ void starwars::Jedi::useForce(int power)
  {
-     return forcePower-power;
+     forcePower=forcePower-power;
  }
- int starwars::Jedi::takeDamage(int damage)
+ void starwars::Jedi::takeDamage(int damage)
  {
-     return health-damage;
+     health=health-damage;
 
  }
- void starwars::Jedi::saveToFile(string filename)
+ void starwars::Jedi::saveToFile()
  {
      ofstream file;
 
-     file.open(filename.c_str(), ios::out);
+     file.open("savedFile.txt", ios::out);
      if(file.fail())
      {
         cout<<"File was not open. "<<endl;
         exit(1);
      }
-     file<<name<<health<<lightsaberSkill<<forcePower;
+     file<<name<<"\n"
+     <<health<<"\n"
+     <<lightsaberSkill<<"\n"
+     <<forcePower<<"\n";
+
+     file.close();
  }
 
- void starwars::Jedi::loadFromFile(string filename)
+ void starwars::Jedi::loadFromFile()
  {
      ifstream file;
      string text;
      
-     file.open(filename, ios::in);
+     file.open("savedFile.txt", ios::in);
 
      if(file.fail())
      {
@@ -80,5 +86,8 @@ using namespace std;
      while(!file.eof())
      {
        getline(file, text);
+       cout<<text<<endl;
      }
+
+     file.close();
  }
