@@ -21,8 +21,17 @@ int main()
     
     while(j1->getHealth()>0 && s1->getHealth() >0)
     {
+        s1->takeDamage(j1->attack());
+        j1->takeDamage(s1->attack());
     }
-
+    if(j1->getHealth() > 0)
+    {
+        cout<<"\n"<<Jname<<" won!. "<<endl;
+    }
+    else
+    {
+        cout<<"\n"<<s1->getName()<<" won!. "<<endl;
+    }
 
 
     delete j1;
