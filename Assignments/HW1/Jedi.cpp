@@ -1,4 +1,5 @@
 #include "starwars.h"
+#include <fstream>
 
 using namespace std;
 
@@ -49,4 +50,35 @@ using namespace std;
  {
      return health-damage;
 
+ }
+ void starwars::Jedi::saveToFile(string filename)
+ {
+     ofstream file;
+
+     file.open(filename.c_str(), ios::out);
+     if(file.fail())
+     {
+        cout<<"File was not open. "<<endl;
+        exit(1);
+     }
+     file<<name<<health<<lightsaberSkill<<forcePower;
+ }
+
+ void starwars::Jedi::loadFromFile(string filename)
+ {
+     ifstream file;
+     string text;
+     
+     file.open(filename, ios::in);
+
+     if(file.fail())
+     {
+        cout<<"File was not open. "<<endl;
+        exit(1);
+     }
+
+     while(!file.eof())
+     {
+       getline(file, text);
+     }
  }

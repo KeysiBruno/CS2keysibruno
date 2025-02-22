@@ -29,6 +29,9 @@ namespace starwars
         void attack();
         int useForce(int);
         int takeDamage(int);
+
+        void saveToFile(string);
+        void loadFromFile(string);
     };
 
     class Sith
