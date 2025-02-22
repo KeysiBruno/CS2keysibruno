@@ -73,7 +73,7 @@ using namespace std;
  void starwars::Jedi::loadFromFile()
  {
      ifstream file;
-     string text;
+     //string text;
      
      file.open("savedFile.txt", ios::in);
 
@@ -85,9 +85,14 @@ using namespace std;
 
      while(!file.eof())
      {
-       getline(file, text);
-       cout<<text<<endl;
+        //getline(file, text);
+        //cout<<text<<endl;
+       file>>name>>health>>lightsaberSkill>>forcePower;
      }
-
+      cout<<"name: "<<name<<endl;
+      cout<<"Health: "<<health<<endl;
+      cout<<"Ligthlaborskill: "<<lightsaberSkill<<endl;
+      cout<<"Forcepower: "<<forcePower<<endl;
+    
      file.close();
  }
