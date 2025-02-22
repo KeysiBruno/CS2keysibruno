@@ -14,7 +14,7 @@ namespace starwars
         
         public:
         //Consrtuctor
-        Jedi(string="Unknown Jedi ", int=100 ,int =50, int = 75);
+        Jedi(string="Unknown Jedi ", int=100 ,int =50, int =75);
         //Destructor
         ~Jedi();
         //Setters
@@ -40,19 +40,21 @@ namespace starwars
        string name;
        int health;
        int lightsaberSkill;
+       int forcePower;
 
        public:
        //Constructor
-        Sith(string="Unknown Sith", int=120, int=60);
+        Sith(string="Unknown Sith", int=120, int=60, int=75);
         //Destructor
         ~Sith();
         //setters
-          void setSith(string, int, int);
+          void setSith(string, int, int, int);
         //getters
         string getName();
         int getHealth();
         int getLigthsaberSkill();
-
+        int getForcePower();
+       //Methods
         int attack();
         void useForce(int);
         void takeDamage(int);

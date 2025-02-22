@@ -11,7 +11,7 @@ int main()
     getline(cin, Jname);
                      //nombre,health,LSS, forcePower 
     Jedi *j1 = new Jedi(Jname, 100, 50, 75);
-    Sith *s1 = new Sith("Sith", 120, 60);
+    Sith *s1 = new Sith("Sith", 120, 60, 50);
 
     j1->saveToFile();
     j1->loadFromFile();
