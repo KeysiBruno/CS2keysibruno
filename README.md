@@ -7,7 +7,7 @@ Notes: It was really hard!
 # Lab 2
 Name: Point Distance
 Date: 02/17/2025
-Grade: .../100
+Grade: 95/100
 Notes: Good project!
 
 # Lab 3
@@ -24,4 +24,4 @@ Notes: Good project!
  Name: Classes Foundation
  Date: 02/24/2025
  Grade: 95/100
- Notes: Good Homework
+ Notes: It was fun to do!
