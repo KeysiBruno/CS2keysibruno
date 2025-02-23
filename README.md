@@ -18,3 +18,10 @@ Notes: Good project!
 
  # Lab 5
  ....
+
+
+ # HOMEWORK
+ Name: Classes Foundation
+ Date: 02/24/2025
+ Grade: 95/100
+ Notes: Good Homework
