@@ -2,17 +2,23 @@
 
 fractions::Fraction::Fraction(int numerator, int denominator) : _numerator(numerator), _denominator(denominator)
 {
-    _numerator = numerator;
-    while(denominator != 0)
+    if(denominator == 0)
+    {
+        cout<<"Denominator cant be 0, lets change it to another number."<<endl;
+       _denominator = 1+rand()%10;
+    }
+    else
     {
         _denominator = denominator;
-    } 
+    }
+    _numerator = numerator;
+    simplify();
 }
 
 fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &frac)
 {
     Fraction Fsum;
-    Fsum._numerator = (this->_numerator*frac._denominator)+(this->_denominator*frac._denominator);
+    Fsum._numerator = (this->_numerator*frac._denominator)+(this->_denominator*frac._numerator);
     Fsum._denominator = this->_denominator*frac._denominator;
 
     Fsum.simplify();
@@ -23,7 +29,7 @@ fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &fr
 fractions::Fraction fractions::Fraction::operator-(fractions::Fraction const &frac)
 {
     Fraction Fsub;
-    Fsub._numerator = (this->_numerator*frac._denominator)-(this->_denominator*frac._denominator);
+    Fsub._numerator = (this->_numerator*frac._denominator)-(this->_denominator*frac._numerator);
     Fsub._denominator = this->_denominator*frac._denominator;
 
     Fsub.simplify();
@@ -68,26 +74,21 @@ void fractions::Fraction::simplify()
 
 int fractions::Fraction::gcd(int a, int b)
 {
-    int num_ref;
-    int gdc;
-
-    (a>b)? : num_ref=a, num_ref=b;
-
-    for(int i=1; i<num_ref; i++)
-    {
-       if(a%i==0 && b%i==0)
-       {
-           gdc = i;
-       }
-    }
-
-    return gdc;
+    if (b == 0) return a;
+    return gcd(b, a % b);
 }
 
 bool fractions::Fraction::operator==(Fraction const &frac)
 {
     bool band = false;
-      if(frac._numerator==this->_numerator && frac._denominator==this->_denominator)
+
+    Fraction x = frac;
+    Fraction y = *this;
+
+    x.simplify();
+    y.simplify();
+
+      if(x._numerator==y._numerator && x._denominator==y._denominator)
       {
          band = true;
       }
@@ -96,5 +97,6 @@ bool fractions::Fraction::operator==(Fraction const &frac)
 
 ostream &fractions::operator<<(ostream &os, const Fraction &frac)
 {
+    os << frac._numerator << "/" << frac._denominator;
     return os;
 }
