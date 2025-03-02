@@ -29,13 +29,13 @@ Notes: Great project!
  Grade: 95/100
  Notes: It was fun to do!
 
- # HOMEWORK 1
+ # HOMEWORK 2
  Name: 
  Date: 
  Grade:
  Notes:
 
- # HOMEWORK 1
+ # HOMEWORK 3
  Name: 
  Date: 
  Grade: 
