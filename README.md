@@ -11,7 +11,10 @@ Grade: 95/100
 Notes: Good project!
 
 # Lab 3
-... Not yet
+Name: Fraction calculator
+Date: 03/10/2025
+Grade: 90
+Notes: Great project!
 
 # Lab 4
  ....
@@ -20,8 +23,20 @@ Notes: Good project!
  ....
 
 
- # HOMEWORK
+ # HOMEWORK 1
  Name: Classes Foundation
  Date: 02/24/2025
  Grade: 95/100
  Notes: It was fun to do!
+
+ # HOMEWORK 1
+ Name: 
+ Date: 
+ Grade:
+ Notes:
+
+ # HOMEWORK 1
+ Name: 
+ Date: 
+ Grade: 
+ Notes: 
