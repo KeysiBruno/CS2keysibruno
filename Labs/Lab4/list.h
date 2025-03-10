@@ -60,19 +60,38 @@ size_t List<T1>::size()
     Node<T1> *_random;
     _random = _head;
     
-    if (_random != nullptr) continue;
-    while(_random->_next != nullptr)
+    if (_random != nullptr)
     {
-        counter++;
+        return counter;
     }
-    return counter;
+    else
+    {
+       while(_random != nullptr)
+       {
+          counter++;
+          _random = _random->getNext();
+       }
+     return counter;
+    }
 }
 
 // add an element to the beginning of the list, updating _head
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
-    _head->getData() = data;
+    Node<T1> *_random = new Node;
+    _random->getData() = data;
+
+   if(_head = nullptr)
+   {
+      _random->getNext() = NULL;
+      _tail = _random;
+   }
+   else
+   {
+     _random->getNext() = _head;
+   }
+   _head = _random;
 }
 
 // return the first element in the list.
@@ -80,9 +99,6 @@ void List<T1>::push_front(T1 data)
 template <class T1>
 T1 List<T1>::front()
 {
-    T1 List<T1> *cList = nullptr;
-     cList = _head;
-
     if(_head == nullptr)
     {
         cout<<"The list is empty"<<endl;
@@ -90,7 +106,7 @@ T1 List<T1>::front()
     }
     else
     {
-       return cList->push_front();
+       return _head->getData();
     }
 }
 
@@ -99,8 +115,8 @@ T1 List<T1>::front()
 template <class T1>
 T1 List<T1>::pop_front()
 {
-    T1 List<T1> *cList = nullptr;
-    cList = _head;
+    Node<T1> *cNode;
+    cNode = _head;
 
    if(_head == nullptr)
    {
@@ -109,9 +125,9 @@ T1 List<T1>::pop_front()
    }
    else
    {
-      return cList->push_front();
-      delete _head ->_data;
-      _head = _head->_next;
+     _head = _head->getNext();
+     cNode->getNext() = NULL;
+     return cNode->getData();
    }
 }
 
@@ -119,17 +135,19 @@ T1 List<T1>::pop_front()
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
-    Node<T1> *newHead = nullptr;
-    newHead = _head;
+    Node<T1> new_node = new Node;
+    new_node->getData()= data;
+    new_node->getNext() = NULL;
 
-    do
-    {
-       _tail = newHead;
-       newHead = newHead->_next;
-
-    }  while(newHead != nullptr);
-    
-   _tail->_data = data;
+   if(_head==nullptr)
+   {
+     _head = new_node;
+   }
+   else
+   {
+     _tail->getNext() = new_node;
+   }
+   _tail = new_node;
 }
 
 // return the last element in the list.
@@ -142,13 +160,10 @@ T1 List<T1>::back()
        cout<<"The list is empty"<<endl;
        return 0;
    }
-
-    Node<T1> *cNode = nullptr;
-    cNode = _head;
-     
-    cList->push_back();
-
-    return
+    else
+    {
+       return _tail->getData();
+    }
 }
 
 // remove the last element from the list and return its data
@@ -156,12 +171,33 @@ T1 List<T1>::back()
 template <class T1>
 T1 List<T1>::pop_back()
 {
+    Node<T1> *aux;
+    aux = _tail;
+
+    if(_head == nullptr)
+    {
+        cout<<"The list is empty"<<endl;
+        return 0;
+    }
+    else
+    {
+      _tail = _tail->getPrev();
+      _tail->getNext() = NULL;
+
+      return aux->getData();
+    }
 }
 
 // overloading <<, should return a space separated stream of all of the elements
 template <class T1>
 ostream &operator<<(ostream &os, const List<T1> &list)
 {
+    os.open();
+
+    while(list != NULL)
+    {
+    os>>
+    }
 }
 
 // should iterate through each list to check that they are exactly the same
