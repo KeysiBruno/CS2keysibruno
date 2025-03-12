@@ -86,7 +86,7 @@ using namespace std;
      while(!file.eof())
      {
         //getline(file, text);
-        //cout<<text<<endl;
+        //cout<<text<<endl;   or...
        file>>name>>health>>lightsaberSkill>>forcePower;
      }
       cout<<"name: "<<name<<endl;
