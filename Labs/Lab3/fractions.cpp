@@ -75,7 +75,7 @@ void fractions::Fraction::simplify()
 int fractions::Fraction::gcd(int a, int b)
 {
     if (b == 0) return a;
-    return gcd(b, a % b);
+    return gcd(b, a%b);
 }
 
 bool fractions::Fraction::operator==(Fraction const &frac)
