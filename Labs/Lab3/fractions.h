@@ -17,7 +17,7 @@ namespace fractions
 
             Must check to verify denominator is not 0
             */
-            Fraction(int = 0, int = 0);
+            Fraction(int=0, int=1);
             
 
             /*

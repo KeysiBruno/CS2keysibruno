@@ -23,7 +23,7 @@ fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &fr
 
     Fsum.simplify();
 
-    return Fraction(Fsum._numerator, Fsum._denominator);
+    return Fsum;
 }
 
 fractions::Fraction fractions::Fraction::operator-(fractions::Fraction const &frac)
@@ -74,7 +74,7 @@ void fractions::Fraction::simplify()
 
 int fractions::Fraction::gcd(int a, int b)
 {
-    if (b == 0) return a;
+    if(b==0) return a;
     return gcd(b, a%b);
 }
 
