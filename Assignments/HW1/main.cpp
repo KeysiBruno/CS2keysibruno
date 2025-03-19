@@ -11,40 +11,38 @@ int main()
     cout << "Enter your Jedi's name: ";
     getline(cin, jediName);
     
-    Jedi* playerJedi = new Jedi(jediName);
+    Jedi* j1 = new Jedi(jediName);
     
-    playerJedi->saveToFile();
+    j1->saveToFile();
     cout << "Jedi saved successfully.\n";
     
-    Jedi* loadedJedi = new Jedi();
-    loadedJedi->loadFromFile();
+    j1->loadFromFile();
     
-    Sith* opponent = new Sith("Messi");
-    cout << "\nA Sith Lord approaches! " << opponent->getName() << "\n";
+    Sith* s1 = new Sith("Messi");
+    cout << "\nA Sith Lord approaches! " << s1->getName() << "\n";
     
-    while (playerJedi->getHealth()>0 && opponent->getHealth()>0)
+    while (j1->getHealth()>0 && s1->getHealth()>0)
     {
         cout << "\nYour Jedi attacks!\n";
-        opponent->takeDamage(playerJedi->attack());
-        cout << opponent->getName() << " health is: " << opponent->getHealth() << "\n";
+        s1->takeDamage(j1->attack());
+        cout << s1->getName() << " health is: " << s1->getHealth() << "\n";
         
-        if (opponent->getHealth() <= 0) {
+        if (s1->getHealth() <= 0) {
             cout << "You win!!! "<<endl;
             break;
         }
         
-        cout << "\n" << opponent->getName() << " strikes back!\n";
-        playerJedi->takeDamage(opponent->attack());
-        cout << "Your Jedi's health: " << playerJedi->getHealth() << "\n";
+        cout << "\n" << s1->getName() << " strikes back!\n";
+        j1->takeDamage(s1->attack());
+        cout << "Your Jedi's health: " << s1->getHealth() << "\n";
         
-        if (playerJedi->getHealth() <= 0) {
+        if (j1->getHealth() <= 0) {
             cout << "You loose! "<<endl;
             break;
         }
     }
     
-    delete playerJedi;
-    delete loadedJedi;
+    delete j1;
     delete opponent;
     
     return 0;
