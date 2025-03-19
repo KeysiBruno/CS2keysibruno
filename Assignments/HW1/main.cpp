@@ -1,7 +1,6 @@
 #include "starwars.h"
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
 
 using namespace std;
 using namespace starwars;
@@ -30,7 +29,7 @@ int main()
         cout << opponent->getName() << " health is: " << opponent->getHealth() << "\n";
         
         if (opponent->getHealth() <= 0) {
-            cout << "You win!!! " << opponent->getName() << "!\n";
+            cout << "You win!!! "<<endl;
             break;
         }
         
@@ -39,7 +38,7 @@ int main()
         cout << "Your Jedi's health: " << playerJedi->getHealth() << "\n";
         
         if (playerJedi->getHealth() <= 0) {
-            cout << "You loose! " << opponent->getName() << "!\n";
+            cout << "You loose! "<<endl;
             break;
         }
     }
