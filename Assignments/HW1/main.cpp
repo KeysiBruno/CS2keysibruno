@@ -14,7 +14,7 @@ int main()
     Jedi* j1 = new Jedi(jediName);
     
     j1->saveToFile();
-    cout << "Jedi saved successfully.\n";
+    cout << "DEBUG: Jedi saved successfully.\n";
     
     j1->loadFromFile();
     
