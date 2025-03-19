@@ -8,7 +8,7 @@ using namespace starwars;
 int main()
 {
     string jediName;
-    cout << "Enter your Jedi's name: ";
+    cout << "Enter Jedi's name: ";
     getline(cin, jediName);
     
     Jedi* j1 = new Jedi(jediName);
@@ -18,12 +18,12 @@ int main()
     
     j1->loadFromFile();
     
-    Sith* s1 = new Sith("Messi");
-    cout << "\nA Sith Lord approaches! " << s1->getName() << "\n";
+    Sith* s1 = new Sith("Keysi");
+    cout << "\nThe oponent comes... he is ! " << s1->getName() << "\n";
     
     while (j1->getHealth()>0 && s1->getHealth()>0)
     {
-        cout << "\nYour Jedi attacks!\n";
+        cout << "\n"<<j1->attack()<<" attacks!\n";
         s1->takeDamage(j1->attack());
         cout << s1->getName() << " health is: " << s1->getHealth() << "\n";
         
@@ -43,7 +43,7 @@ int main()
     }
     
     delete j1;
-    delete opponent;
+    delete s1;
     
     return 0;
 }
