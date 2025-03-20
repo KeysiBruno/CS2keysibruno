@@ -4,7 +4,28 @@ using namespace std;
 
 namespace starwars
 {
-    class Jedi
+    class Character
+    {
+        private:
+        string name;
+        int health;
+        int attackPower;
+        
+        public:
+        //Constructor
+        Character(string, int, int);
+        //Destructor
+        ~Character();
+        //Getters
+        string getName();
+        int getHealth();
+        int getAttackPower();
+        //Setters
+        void setCharacter(string, int, int);
+        virtual void takeDamage(int);
+    };
+
+    class Jedi : public Character
     {
         private:
         string name;
@@ -34,7 +55,9 @@ namespace starwars
         void loadFromFile();
     };
 
-    class Sith
+
+
+    class Sith : public Character
     {
        private:
        string name;

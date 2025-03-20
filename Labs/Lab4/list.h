@@ -34,7 +34,7 @@ class List
 
 // set to nullptr and initialize listSize
 template <class T1>
-List<T1>::List() : _head(head), _tail(tail), listSize(_listSize)
+List<T1>::List() : _head(nullptr), _tail(nullptr), listSize(0) {}
 {
 }
 
@@ -50,6 +50,7 @@ template <class T1>
 bool List<T1>::empty()
 {
     return (_head==nullptr)?true:false;
+    listSize = 0;
 }
 
 // return number of elements in list
@@ -60,13 +61,11 @@ size_t List<T1>::size()
     Node<T1> *_random;
     _random = _head;
     
-    if (_random != nullptr)
-    {
-        return counter;
-    }
+    if (_random == NULL) return counter;
+
     else
     {
-       while(_random != nullptr)
+       while(_random != NULL)
        {
           counter++;
           _random = _random->getNext();
@@ -79,19 +78,21 @@ size_t List<T1>::size()
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
-    Node<T1> *_random = new Node;
-    _random->getData() = data;
+    Node<T1> *new_node = new Node;
+    new_node->getData() = data;
 
-   if(_head = nullptr)
+   if(_head = NULL)
    {
-      _random->getNext() = NULL;
-      _tail = _random;
+      new_node->getNext() = NULL;
+      _head= new_node;
+      _head = _tail;
    }
    else
    {
-     _random->getNext() = _head;
+     new_node->setNext() = _head;
+     new_node->setPrev() = NULL;
    }
-   _head = _random;
+   _head = new_node;
 }
 
 // return the first element in the list.
@@ -99,9 +100,9 @@ void List<T1>::push_front(T1 data)
 template <class T1>
 T1 List<T1>::front()
 {
-    if(_head == nullptr)
+    if(_head == NULL)
     {
-        cout<<"The list is empty"<<endl;
+        cout<<"The list is empty. "<<endl;
         return 0;
     }
     else
@@ -118,7 +119,7 @@ T1 List<T1>::pop_front()
     Node<T1> *cNode;
     cNode = _head;
 
-   if(_head == nullptr)
+   if(_head == NULL)
    {
        cout<<"The list is empty"<<endl;
        return 0;
@@ -126,8 +127,13 @@ T1 List<T1>::pop_front()
    else
    {
      _head = _head->getNext();
+     _head->getNext->setPrev() = _head;
+     _head->setPrev = NULL;
+
      cNode->getNext() = NULL;
+
      return cNode->getData();
+     delete cNode;
    }
 }
 
@@ -139,13 +145,14 @@ void List<T1>::push_back(T1 data)
     new_node->getData()= data;
     new_node->getNext() = NULL;
 
-   if(_head==nullptr)
+   if(_head==NULL)
    {
      _head = new_node;
    }
    else
    {
-     _tail->getNext() = new_node;
+     _tail->setNext() = new_node;
+     new_node->setPrev() = _tail;
    }
    _tail = new_node;
 }
@@ -155,14 +162,14 @@ void List<T1>::push_back(T1 data)
 template <class T1>
 T1 List<T1>::back()
 {
-    if(_head == nullptr)
+    if(_head == NULL)
    {
-       cout<<"The list is empty"<<endl;
+       cout<<"The list is empty. "<<endl;
        return 0;
    }
     else
     {
-       return _tail->getData();
+        return _tail->getData();
     }
 }
 
@@ -171,20 +178,21 @@ T1 List<T1>::back()
 template <class T1>
 T1 List<T1>::pop_back()
 {
-    Node<T1> *aux;
-    aux = _tail;
+    Node<T1> *cNode;
+    cNode = _tail;
 
-    if(_head == nullptr)
-    {
-        cout<<"The list is empty"<<endl;
-        return 0;
-    }
+    if(_head == NULL)
+   {
+       cout<<"The list is empty. "<<endl;
+       return 0;
+   }
     else
     {
-      _tail = _tail->getPrev();
-      _tail->getNext() = NULL;
+        _tail = _tail->setPrev();
+        _tail->setNext = NULL;
 
-      return aux->getData();
+       return cNode->getData();
+       delete cNode;
     }
 }
 
