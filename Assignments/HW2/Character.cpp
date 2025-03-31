@@ -1,7 +1,7 @@
 #include "starwars.h"
 
  //Constructor
- starwars::Character::Character(string, int, int)
+ starwars::Character::Character(string _name, int _health, int _attackPower)
  {
 
  }

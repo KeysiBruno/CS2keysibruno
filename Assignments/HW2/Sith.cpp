@@ -3,8 +3,9 @@
 using namespace std;
 
 //Constructor
-starwars::Sith::Sith(string _name, int _health, int _lightsaberSkill, int _forcePower) : name(_name), health(_health), lightsaberSkill(_lightsaberSkill), forcePower(_forcePower)
+starwars::Sith::Sith(string _name, int _health, int _lightsaberSkill, int _forcePower) : Character(name, health, forcePower)
 {
+    lightsaberSkill=_lightsaberSkill;
 }
 //Destructor
 starwars::Sith::~Sith()

@@ -9,7 +9,7 @@ namespace starwars
         private:
         string name;
         int health;
-        int attackPower;
+        int forcePower;
         
         public:
         //Constructor

@@ -5,8 +5,9 @@
 using namespace std;
 
  //Consrtuctor
- starwars::Jedi::Jedi(string _name, int _health,int _lightsaberSkill, int _forcePower) : name(_name), health(_health), lightsaberSkill(_lightsaberSkill), forcePower(_forcePower) 
+ starwars::Jedi::Jedi(string _name, int _health,int _lightsaberSkill, int _forcePower) : Character(name, health, forcePower)
  {
+    lightsaberSkill=_lightsaberSkill;
  }
  //Destructor
  starwars::Jedi::~Jedi()
