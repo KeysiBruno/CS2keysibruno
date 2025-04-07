@@ -6,7 +6,7 @@ namespace starwars
 {
     class Character
     {
-        private:
+        protected:
         string name;
         int health;
         int forcePower;
@@ -14,8 +14,6 @@ namespace starwars
         public:
         //Constructor
         Character(string = "Normal person", int=10, int=10);
-        //Destructor
-        ~Character();
         //Getters
         string getName();
         int getHealth();
@@ -27,17 +25,12 @@ namespace starwars
 
     class Jedi : public Character
     {
-        private:
-        string name;
-        int health;
+        protected:
         int lightsaberSkill;
-        int forcePower; 
         
         public:
         //Consrtuctor
         Jedi(string="Unknown Jedi ", int=100 ,int =50, int =75);
-        //Destructor
-        ~Jedi();
         //Setters
         void setJedi(string, int, int, int);
         //getters
@@ -57,72 +50,38 @@ namespace starwars
 
          class Guardian : public Jedi
          {
-            private:
-            string name;
-            int health;
-            int lightsaberSkill;
-            int forcePower; 
-            
             public:
             //Consrtuctor
-            Guardian(string _name, int _health=150 ,int _lightsaberSkill=70, int _forcePower) : Jedi(name, forcePower)
-            {
-               health = _health;
-               lightsaberSkill = _lightsaberSkill;
-            }           
-            //Destructor
-            ~Guardian(){}
-            //getters
-            int getHealth(){return health;}
-            int getLightsaberSkill(){return lightsaberSkill;}
-
+            Guardian(string _name, int _health=150 ,int _lightsaberSkill=70, int _forcePower=90) : Jedi(_name, _health, _lightsaberSkill, _forcePower)
+            {}           
             //Methods
-            int attack(){return lightsaberSkill;}
-            void useForce(int power){forcePower = forcePower-power;}
-            void takeDamage(int damage){health = health-damage;}
+            int attack(){return Jedi::getLightsaberSkill();}
+            void useForce(int power){Jedi::useForce(power);}
+            void takeDamage(int damage){Jedi::takeDamage(damage);}
 
          };
          class Consular : public Jedi
          {
-           private:
-            string name;
-            int health;
-            int lightsaberSkill;
-            int forcePower; 
-            
             public:
             //Consrtuctor
-            Consular(string _name, int _health=100 ,int _lightsaberSkill, int _forcePower=120) : Jedi(name, lightsaberSkill)
-            {
-               health = _health;
-               forcePower = _forcePower;
-            }           
-            //Destructor
-            ~Consular(){}
-            //getters
-            int getHealth(){return health;}
-            int getforcePower(){return forcePower;}
+            Consular(string _name, int _health=100 ,int _lightsaberSkill=50, int _forcePower=120) : Jedi(_name, _health, _lightsaberSkill, _forcePower)
+            {}
 
             //Methods
-            int attack(){return lightsaberSkill;}
-            void useForce(int power){forcePower = forcePower-power;}
-            void takeDamage(int damage){health = health-damage;}
+            int attack(){return Jedi::getLightsaberSkill();}
+            void useForce(int power){Jedi::useForce(power);}
+            void takeDamage(int damage){Jedi::takeDamage(damage);}
          };
 
     class Sith : public Character
     {
-       private:
-       string name;
-       int health;
+       protected:
        int lightsaberSkill;
-       int forcePower;
 
        public:
        //Constructor
         Sith(string="Unknown Sith", int=120, int=60, int=75);
-        //Destructor
-        ~Sith();
-        //setters
+
           void setSith(string, int, int, int);
         //getters
         string getName();
@@ -137,54 +96,29 @@ namespace starwars
          class Acolyte : public Sith
          {
             private:
-            string name;
-            int health;
-            int lightsaberSkill;
-            int forcePower; 
+            // Using base class member variables
             
             public:
             //Consrtuctor
-            Acolyte(string _name, int _health=80 ,int _lightsaberSkill, int _forcePower=40) : Sith(name, lightsaberSkill)
+            Acolyte(string _name, int _health=80 ,int _lightsaberSkill=60, int _forcePower=40) : Sith(_name, _health, _lightsaberSkill, _forcePower)
             {
-               health = _health;
-               forcePower = _forcePower;
+            // Base class constructor already initializes the member variables
             }           
-            //Destructor
-            ~Acolyte(){}
-            //getters
-            int getHealth(){return health;}
-            int getForcePower(){return forcePower;}
-
             //Methods
-            int attack(){return lightsaberSkill;}
-            void useForce(int power){forcePower = forcePower-power;}
-            void takeDamage(int damage){health = health-damage;}
+            int attack(){return Sith::getLigthsaberSkill();}
+            void useForce(int power){Sith::useForce(power);}
+            void takeDamage(int damage){Sith::takeDamage(damage);}
          };
          class Darth : public Sith
          {
-           private:
-            string name;
-            int health;
-            int lightsaberSkill;
-            int forcePower; 
-            
             public:
             //Consrtuctor
-            Darth(string _name, int _health=200 ,int _lightsaberSkill, int _forcePower=100) : Sith(name, lightsaberSkill)
-            {
-               health = _health;
-               forcePower = _forcePower;
-            }           
-            //Destructor
-            ~Darth(){}
-            //getters
-            int getHealth(){return health;}
-            int getForcePower(){return forcePower;}
-
+            Darth(string _name, int _health=200 ,int _lightsaberSkill=90, int _forcePower=100) : Sith(_name, _health, _lightsaberSkill, _forcePower)
+            {}           
             //Methods
-            int attack(){return lightsaberSkill;}
-            void useForce(int power){forcePower = forcePower-power;}
-            void takeDamage(int damage){health = health-damage;}
+            int attack(){return Sith::getLigthsaberSkill();}
+            void useForce(int power){Sith::useForce(power);}
+            void takeDamage(int damage){Sith::takeDamage(damage);}
          };
 
 }

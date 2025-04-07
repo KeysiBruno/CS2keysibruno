@@ -5,13 +5,9 @@
 using namespace std;
 
  //Consrtuctor
- starwars::Jedi::Jedi(string _name, int _health,int _lightsaberSkill, int _forcePower) : Character(name, health, forcePower)
+ starwars::Jedi::Jedi(string _name, int _health,int _lightsaberSkill, int _forcePower) : Character(_name, _health, _forcePower)
  {
     lightsaberSkill=_lightsaberSkill;
- }
- //Destructor
- starwars::Jedi::~Jedi()
- {
  }
  //Setters
  void starwars::Jedi::setJedi(string _name, int _health, int _lightsaberSkill, int _forcePower)
@@ -74,26 +70,24 @@ using namespace std;
  void starwars::Jedi::loadFromFile()
  {
      ifstream file;
-     //string text;
-     
      file.open("savedFile.txt", ios::in);
-
+ 
      if(file.fail())
      {
-        cout<<"File was not open. "<<endl;
-        exit(1);
+         cout<<"File was not opened. "<<endl;
+         exit(1);
      }
-
-     while(!file.eof())
-     {
-        //getline(file, text);
-        //cout<<text<<endl;   or...
-       file>>name>>health>>lightsaberSkill>>forcePower;
-     }
-      cout<<"name: "<<name<<endl;
-      cout<<"Health: "<<health<<endl;
-      cout<<"Ligthlaborskill: "<<lightsaberSkill<<endl;
-      cout<<"Forcepower: "<<forcePower<<endl;
-    
+ 
+     string line;
+ 
+     getline(file, name);
+     file >> health >> lightsaberSkill >> forcePower;
+ 
+     cout<<"name: "<<name<<endl;
+     cout<<"Health: "<<health<<endl;
+     cout<<"Lightsaber skill: "<<lightsaberSkill<<endl;
+     cout<<"Force power: "<<forcePower<<endl;
+ 
      file.close();
  }
+ 

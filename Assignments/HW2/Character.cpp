@@ -7,9 +7,6 @@
     health = _health;
     forcePower = _forcePpwer;
  }
- //Destructor
-  starwars::Character::~Character()
- {}
  //Getters
  string starwars::Character::getName()
  {

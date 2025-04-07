@@ -7,8 +7,8 @@ using namespace std;
 using namespace starwars;
 
 int option;
-void Jedichose(string);
-void RandomSith(Sith *);
+void Jedichose(Jedi*& jedi, string name);
+void RandomSith(Sith*& random);
 
 int main()
 {
@@ -18,23 +18,22 @@ int main()
     
     Jedi* j1 = new Jedi(jediName);
     
-    j1->saveToFile();
-    cout << "DEBUG: Jedi saved successfully.\n";
-    
     cout<<"Enter your Jedy type : "
     <<endl<<"1. Guardian. "<<endl<<"2. Consular. \n"<<"Option: ";
     cin>>option;
-    Jedichose(jediName);
-
+    Jedichose(j1, jediName);
+        
+    j1->saveToFile();
+    cout << "DEBUG: Jedi saved successfully.\n";
     j1->loadFromFile();
     
-    Sith *random;
+    Sith *random = nullptr;
     RandomSith(random);
     cout<<"Here comes Sith, and attacks ..."<<endl;
 
     while (j1->getHealth()>0 && random->getHealth()>0)
     {
-        cout << "\n"<<j1->attack()<<" attacks!\n";
+        cout << "\nYou attack!\n";
         random->takeDamage(j1->attack());
         cout << random->getName() << " health is: " << random->getHealth() << "\n";
         
@@ -45,7 +44,7 @@ int main()
         
         cout << "\n" << random->getName() << " strikes back!\n";
         j1->takeDamage(random->attack());
-        cout << "Your Jedi's health: " << random->getHealth() << "\n";
+        cout << "Your Jedi's health: " << j1->getHealth() << "\n";
         
         if (j1->getHealth() <= 0) {
             cout << "You loose! "<<endl;
@@ -54,29 +53,32 @@ int main()
     }
     
     delete j1;
-    delete s1;
+    delete random;
     
     return 0;
 }
 
-void Jedichose(string name)
+void Jedichose(Jedi*& jedi, string name)
 {
    if(option==1)
    {
-       Guardian *g1 = new Guardian(name);
+    delete jedi;
+    jedi = new Guardian(name);
 
    }
    else if(option == 2)
    {
-      Consular *c1 = new Consular(name);
+    delete jedi;
+    jedi = new Consular(name);
    }
    else{
     cout<<"You entered a wrong number. "<<endl;
    }  
 }
 
-void RandomSith(Sith *random)
+void RandomSith(Sith*& random)
 {
+    random = nullptr;
     int num = rand()%2;
     if (num==0)
     {
