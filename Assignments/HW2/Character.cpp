@@ -1,9 +1,11 @@
 #include "starwars.h"
 
  //Constructor
- starwars::Character::Character(string _name, int _health, int _attackPower)
+ starwars::Character::Character(string _name, int _health, int _forcePpwer)
  {
-
+    name = _name;
+    health = _health;
+    forcePower = _forcePpwer;
  }
  //Destructor
   starwars::Character::~Character()
@@ -11,23 +13,19 @@
  //Getters
  string starwars::Character::getName()
  {
-
+     return name;
  }
  int starwars::Character::getHealth()
  {
-
+    return health;
  }
  int starwars::Character::getAttackPower()
  {
-
+     return forcePower;
  }
- //Setters
- void starwars::Character::setCharacter(string, int, int)
+ //Methods
+ void starwars::Character::takeDamage(int damage)
  {
-
- }
- virtual void starwars::Character::takeDamage(int)
- {
-   
+    health = health - damage;
  }
 

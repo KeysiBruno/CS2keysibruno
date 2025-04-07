@@ -13,7 +13,7 @@ namespace starwars
         
         public:
         //Constructor
-        Character(string, int, int);
+        Character(string = "Normal person", int=10, int=10);
         //Destructor
         ~Character();
         //Getters
@@ -47,15 +47,67 @@ namespace starwars
         int getForcePower();
 
         //Methods
-        int attack();
-        void useForce(int);
-        void takeDamage(int);
+        virtual int attack();
+        virtual void useForce(int);
+        virtual void takeDamage(int);
 
         void saveToFile();
         void loadFromFile();
     };
 
+         class Guardian : public Jedi
+         {
+            private:
+            string name;
+            int health;
+            int lightsaberSkill;
+            int forcePower; 
+            
+            public:
+            //Consrtuctor
+            Guardian(string _name, int _health=150 ,int _lightsaberSkill=70, int _forcePower) : Jedi(name, forcePower)
+            {
+               health = _health;
+               lightsaberSkill = _lightsaberSkill;
+            }           
+            //Destructor
+            ~Guardian(){}
+            //getters
+            int getHealth(){return health;}
+            int getLightsaberSkill(){return lightsaberSkill;}
 
+            //Methods
+            int attack(){return lightsaberSkill;}
+            void useForce(int power){forcePower = forcePower-power;}
+            void takeDamage(int damage){health = health-damage;}
+
+         };
+         class Consular : public Jedi
+         {
+           private:
+            string name;
+            int health;
+            int lightsaberSkill;
+            int forcePower; 
+            
+            public:
+            //Consrtuctor
+            Consular(string _name, int _health=100 ,int _lightsaberSkill, int _forcePower=120) : Jedi(name, lightsaberSkill)
+            {
+               health = _health;
+               forcePower = _forcePower;
+            }           
+            //Destructor
+            ~Consular(){}
+            //getters
+            int getHealth(){return health;}
+            int getforcePower(){return forcePower;}
+
+            //Methods
+            int attack(){return lightsaberSkill;}
+            void useForce(int power){forcePower = forcePower-power;}
+            void takeDamage(int damage){health = health-damage;}
+         };
 
     class Sith : public Character
     {
@@ -77,9 +129,62 @@ namespace starwars
         int getHealth();
         int getLigthsaberSkill();
         int getForcePower();
-       //Methods
-        int attack();
-        void useForce(int);
-        void takeDamage(int);
+        //Methods
+        virtual int attack();
+        virtual void useForce(int);
+        virtual void takeDamage(int);
     };
+         class Acolyte : public Sith
+         {
+            private:
+            string name;
+            int health;
+            int lightsaberSkill;
+            int forcePower; 
+            
+            public:
+            //Consrtuctor
+            Acolyte(string _name, int _health=80 ,int _lightsaberSkill, int _forcePower=40) : Sith(name, lightsaberSkill)
+            {
+               health = _health;
+               forcePower = _forcePower;
+            }           
+            //Destructor
+            ~Acolyte(){}
+            //getters
+            int getHealth(){return health;}
+            int getForcePower(){return forcePower;}
+
+            //Methods
+            int attack(){return lightsaberSkill;}
+            void useForce(int power){forcePower = forcePower-power;}
+            void takeDamage(int damage){health = health-damage;}
+         };
+         class Darth : public Sith
+         {
+           private:
+            string name;
+            int health;
+            int lightsaberSkill;
+            int forcePower; 
+            
+            public:
+            //Consrtuctor
+            Darth(string _name, int _health=200 ,int _lightsaberSkill, int _forcePower=100) : Sith(name, lightsaberSkill)
+            {
+               health = _health;
+               forcePower = _forcePower;
+            }           
+            //Destructor
+            ~Darth(){}
+            //getters
+            int getHealth(){return health;}
+            int getForcePower(){return forcePower;}
+
+            //Methods
+            int attack(){return lightsaberSkill;}
+            void useForce(int power){forcePower = forcePower-power;}
+            void takeDamage(int damage){health = health-damage;}
+         };
+
 }
