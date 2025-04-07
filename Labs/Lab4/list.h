@@ -106,48 +106,52 @@ T1 List<T1>::front()
 template <class T1>
 T1 List<T1>::pop_front()
 {
-    T1 data;
+    if(_head == nullptr)
+    {
+        cout<<"The list is empty"<<endl;
+        return 0;
+    }
+    
     Node<T1> *cNode = _head;
-    cNode->setData(data);
-
-   if(_head == NULL)
-   {
-       cout<<"The list is empty"<<endl;
-       return 0;
-   }
-   else
-   {
-     _head->setNext(_head);
-     _head->setPrev(nullptr);
-
-     delete cNode;
-   }
-
-   listSize--;
-   return data;
+    T1 data = cNode->getData();
+    
+    _head = _head->getNext();
+    
+    if(_head == nullptr) {
+        // List becomes empty
+        _tail = nullptr;
+    }
+    else {
+        _head->setPrev(nullptr);
+    }
+    
+    delete cNode;
+    listSize--;
+    return data;
 }
 
 // add an element to the end of hte list, updating _tail
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
-    Node<T1> new_node = new Node<T1>();
+    Node<T1>* new_node = new Node<T1>();
     new_node->setData(data);
     new_node->setNext(nullptr);
     new_node->setPrev(_tail);
 
-   if(_head==nullptr)
-   {
-      _tail = _head;
-     _head = new_node;
-   }
-   else
-   {
-     _tail->setNext(new_node);
-   }
-   _tail = new_node;
+    if(_head == nullptr)
+    {
+        // List is empty, set both head and tail to the new node
+        _head = new_node;
+        _tail = new_node;
+    }
+    else
+    {
+        _tail->setNext(new_node);
+        _tail = new_node;
+    }
 
-   listSize++;
+    listSize++;
 }
 
 // return the last element in the list.
@@ -171,23 +175,26 @@ T1 List<T1>::back()
 template <class T1>
 T1 List<T1>::pop_back()
 {
-    T1 data;
-    Node<T1> *cNode = _tail;
-    cNode->setData(data);
-
     if(_head == nullptr)
-   {
-       cout<<"The list is empty. "<<endl;
-       return 0;
-   }
-    else
     {
-       _tail->setPrev(_tail);
-       _tail->setNext(nullptr);
-
-       delete cNode;
+        cout<<"The list is empty. "<<endl;
+        return 0;
     }
-
+    
+    Node<T1> *cNode = _tail;
+    T1 data = cNode->getData();
+    
+    _tail = _tail->getPrev();
+    
+    if(_tail == nullptr) {
+        // List becomes empty
+        _head = nullptr;
+    }
+    else {
+        _tail->setNext(nullptr);
+    }
+    
+    delete cNode;
     listSize--;
     return data;
 }
