@@ -17,7 +17,10 @@ Grade: 90
 Notes: Great project!
 
 # Lab 4
- ....
+Name: 
+Date: 03/28/2025
+Grade: 95/100
+Notes: Easy.
 
  # Lab 5
  ....
@@ -31,9 +34,9 @@ Notes: Great project!
 
  # HOMEWORK 2
  Name: 
- Date: 
- Grade:
- Notes:
+ Date: 04/07/2025
+ Grade: 90/100
+ Notes: Similar to HW1.
 
  # HOMEWORK 3
  Name: 
