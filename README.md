@@ -13,17 +13,20 @@ Notes: Good project!
 # Lab 3
 Name: Fraction calculator
 Date: 03/10/2025
-Grade: 90
+Grade: 95/100
 Notes: Great project!
 
 # Lab 4
-Name: 
+Name: Doubly Linked List
 Date: 03/28/2025
 Grade: 95/100
 Notes: Easy.
 
  # Lab 5
- ....
+Name: BST
+Date: 04/13/2025
+Grade: 95/100
+Notes: Great project!
 
 
  # HOMEWORK 1
@@ -33,7 +36,7 @@ Notes: Easy.
  Notes: It was fun to do!
 
  # HOMEWORK 2
- Name: 
+ Name: Classes with Inheritance
  Date: 04/07/2025
  Grade: 90/100
  Notes: Similar to HW1.

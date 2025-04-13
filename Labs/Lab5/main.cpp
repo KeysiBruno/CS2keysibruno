@@ -93,10 +93,13 @@ void test()
     buffer.str(string());
     cout.rdbuf(backup);
 
+    cout << "Expected: 8 25 27 30 37 39 67 74 87 95 " << endl;
+    cout << "Got: " << test1<<"."<< endl;
 
-    assert(test1 == "8 25 27 30 37 39 67 74 87 95 ");
-    assert(test2 == "12 31 32 35 41 51 59 77 80 83 ");
-    assert(test3 == "10 16 19 39 47 52 64 70 84 92 ");
+    //Problem was a \n, sp I added it:
+    assert(test1 == "8 25 27 30 37 39 67 74 87 95 \n");
+    assert(test2 == "12 31 32 35 41 51 59 77 80 83 \n");
+    assert(test3 == "10 16 19 39 47 52 64 70 84 92 \n");
     cout << "All test cases passed" << endl;
     delete myTree;
     delete myTree2;
