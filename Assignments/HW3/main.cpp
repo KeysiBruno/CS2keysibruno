@@ -1,16 +1,93 @@
+#include "starwars.h"
 #include <iostream>
-#include <string>
-#include <sstream>
-#include "stack.h"
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
+using namespace starwars;
 
-double evaluateRPN(string expression)
+int option;
+void Jedichose(Jedi*& jedi, string name);
+void RandomSith(Sith*& random);
+
+int main()
 {
-    return 0.0;
+    string jediName;
+    cout << "Enter Jedi's name: ";
+    getline(cin, jediName);
+    
+    Jedi* j1 = new Jedi(jediName);
+    
+    cout<<"Enter your Jedy type : "
+    <<endl<<"1. Guardian. "<<endl<<"2. Consular. \n"<<"Option: ";
+    cin>>option;
+    Jedichose(j1, jediName);
+        
+    j1->saveToFile();
+    cout << "DEBUG: Jedi saved successfully.\n";
+    j1->loadFromFile();
+    
+    Sith *random = nullptr;
+    RandomSith(random);
+    cout<<"Here comes Sith, and attacks ..."<<endl;
+
+    while (j1->getHealth()>0 && random->getHealth()>0)
+    {
+        cout << "\nYou attack!\n";
+        random->takeDamage(j1->attack());
+        cout << random->getName() << " health is: " << random->getHealth() << "\n";
+        
+        if (random->getHealth() <= 0) {
+            cout << "You win!!!"<<endl;
+            break;
+        }
+        
+        cout << "\n" << random->getName() << " strikes back!\n";
+        j1->takeDamage(random->attack());
+        cout << "Your Jedi's health: " << j1->getHealth() << "\n";
+        
+        if (j1->getHealth() <= 0) {
+            cout << "You loose! "<<endl;
+            break;
+        }
+    }
+    
+    delete j1;
+    delete random;
+    
+    return 0;
 }
 
-int main(int argc, char *argv[])
+void Jedichose(Jedi*& jedi, string name)
 {
-    return 0;
+   if(option==1)
+   {
+    delete jedi;
+    jedi = new Guardian(name);
+
+   }
+   else if(option == 2)
+   {
+    delete jedi;
+    jedi = new Consular(name);
+   }
+   else{
+    cout<<"You entered a wrong number. "<<endl;
+   }  
+}
+
+void RandomSith(Sith*& random)
+{
+    random = nullptr;
+    int num = rand()%2;
+    if (num==0)
+    {
+        Acolyte *a1 = new Acolyte("Keysi");
+        random = a1;
+    }
+    if (num==1)
+    {
+        Darth *d1 = new Darth("Keysi");
+        random = d1;
+    }
 }
