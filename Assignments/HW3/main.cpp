@@ -16,37 +16,52 @@ int main()
     cout << "Enter Jedi's name: ";
     getline(cin, jediName);
     
-    Jedi* j1 = new Jedi(jediName);
+    Jedi *j1 = new Jedi(jediName);
     
     cout<<"Enter your Jedy type : "
     <<endl<<"1. Guardian. "<<endl<<"2. Consular. \n"<<"Option: ";
     cin>>option;
     Jedichose(j1, jediName);
-        
-    j1->saveToFile();
-    cout << "DEBUG: Jedi saved successfully.\n";
-    j1->loadFromFile();
+   
+    cout<<*j1;
     
     Sith *random = nullptr;
     RandomSith(random);
     cout<<"Here comes Sith, and attacks ..."<<endl;
 
-    while (j1->getHealth()>0 && random->getHealth()>0)
+    char option;
+    cout<<"Do you want to add your Jedi health?(y/n): ";
+    cin>>option;
+    if(option=='y')
+    {
+        int addhealth;
+        cout<<"Enter additional health: ";
+        cin>>addhealth;
+        j1 = j1 + addhealth;
+    }
+    else
+    {
+        return;
+    }
+    //helping jedi 
+    random = random-5;
+
+    while (j1>0 && random>0)
     {
         cout << "\nYou attack!\n";
-        random->takeDamage(j1->attack());
+        random=random-j1->attack();
         cout << random->getName() << " health is: " << random->getHealth() << "\n";
         
-        if (random->getHealth() <= 0) {
+        if (random <= 0) {
             cout << "You win!!!"<<endl;
             break;
         }
         
         cout << "\n" << random->getName() << " strikes back!\n";
-        j1->takeDamage(random->attack());
+        j1=j1-random->attack();
         cout << "Your Jedi's health: " << j1->getHealth() << "\n";
         
-        if (j1->getHealth() <= 0) {
+        if (j1 <= 0) {
             cout << "You loose! "<<endl;
             break;
         }
