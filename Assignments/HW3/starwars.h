@@ -21,6 +21,25 @@ namespace starwars
         //Setters
         void setCharacter(string, int, int);
         virtual void takeDamage(int);
+
+        //Operators
+        Character operator+(int addHealth)
+        {
+          this->health = this->health+addHealth;
+          return *this;
+        }
+        Character operator-(int subsHealth)
+        {
+          this->health = this->health-subsHealth;
+          return *this;
+        }
+        friend ostream& operator<<(ostream& os, const Character& c1)
+        {
+           cout<<"Name: "<<c1.name<<endl;
+           cout<<"Health: "<<c1.health<<endl;
+           cout<<"Attack Power: "<<c1.forcePower<<endl;
+           return os;
+        }
     };
 
     class Jedi : public Character
@@ -46,6 +65,24 @@ namespace starwars
 
         void saveToFile();
         void loadFromFile();
+
+        //Operators
+        bool operator==(Jedi j2)
+        {
+            return (this->health==j2.health);
+        }
+        bool operator!=(Jedi j2)
+        {
+           return (this->health!=j2.health);
+        }
+        bool operator<(Jedi j2)
+        {
+           return (this->health < j2.health);
+        }
+        bool operator>(Jedi& j2)
+        {
+          return (this->health > j2.health);
+        }
     };
 
          class Guardian : public Jedi
@@ -92,6 +129,24 @@ namespace starwars
         virtual int attack();
         virtual void useForce(int);
         virtual void takeDamage(int);
+
+         //Operators
+         bool operator==(Sith s2)
+         {
+           return (this->health==s2.health);
+         }
+         bool operator!=(Sith s2)
+         {
+           return (this->health!=s2.health);
+         }
+         bool operator<(Sith s2)
+         {
+            return (this->health < s2.health);
+         }
+         bool operator>(Sith s2)
+         {
+            return (this->health > s2.health);
+         }
     };
          class Acolyte : public Sith
          {

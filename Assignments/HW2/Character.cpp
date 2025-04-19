@@ -1,11 +1,11 @@
 #include "starwars.h"
 
  //Constructor
- starwars::Character::Character(string _name, int _health, int _forcePpwer)
+ starwars::Character::Character(string _name, int _health, int _forcePower)
  {
     name = _name;
     health = _health;
-    forcePower = _forcePpwer;
+    forcePower = _forcePower;
  }
  //Getters
  string starwars::Character::getName()

@@ -95,15 +95,10 @@ namespace starwars
     };
          class Acolyte : public Sith
          {
-            private:
-            // Using base class member variables
-            
             public:
             //Consrtuctor
             Acolyte(string _name, int _health=80 ,int _lightsaberSkill=60, int _forcePower=40) : Sith(_name, _health, _lightsaberSkill, _forcePower)
-            {
-            // Base class constructor already initializes the member variables
-            }           
+            {}           
             //Methods
             int attack(){return Sith::getLigthsaberSkill();}
             void useForce(int power){Sith::useForce(power);}
