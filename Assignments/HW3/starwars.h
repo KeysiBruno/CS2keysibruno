@@ -4,44 +4,46 @@ using namespace std;
 
 namespace starwars
 {
-    class Character
-    {
-        protected:
-        string name;
-        int health;
-        int forcePower;
-        
-        public:
-        //Constructor
-        Character(string = "Normal person", int=10, int=10);
-        //Getters
-        string getName();
-        int getHealth();
-        int getAttackPower();
-        //Setters
-        void setCharacter(string, int, int);
-        virtual void takeDamage(int);
-
-        //Operators
-        Character operator+(int addHealth)
-        {
-          this->health = this->health+addHealth;
-          return *this;
-        }
-        Character operator-(int subsHealth)
-        {
-          this->health = this->health-subsHealth;
-          return *this;
-        }
-        friend ostream& operator<<(ostream& os, const Character& c1)
-        {
-           cout<<"Name: "<<c1.name<<endl;
-           cout<<"Health: "<<c1.health<<endl;
-           cout<<"Attack Power: "<<c1.forcePower<<endl;
-           return os;
-        }
-    };
-
+   class Character
+   {
+      protected:
+          string name;
+          int health;
+          int forcePower;
+      
+      public:
+          // Constructor
+          Character(string name = "Normal person", int health = 10, int forcePower = 10);
+      
+          // Getters
+          string getName();
+          int getHealth();
+          int getAttackPower();
+      
+          // Setters
+          void setCharacter(string, int, int);
+          virtual void takeDamage(int);
+      
+          // Operators
+          virtual Character operator+(int addHealth)
+          {
+              return Character(name, health + addHealth, forcePower);
+          }
+      
+          virtual Character operator-(int damage)
+          {
+              return Character(name, health - damage, forcePower);
+          }
+      
+          friend ostream& operator<<(ostream& os, const Character& c1)
+          {
+              os << "Name: " << c1.name << endl;
+              os << "Health: " << c1.health << endl;
+              os << "Attack Power: " << c1.forcePower << endl;
+              return os;
+          }
+      };
+      
     class Jedi : public Character
     {
         protected:
@@ -67,21 +69,30 @@ namespace starwars
         void loadFromFile();
 
         //Operators
-        bool operator==(Jedi j2)
+        virtual bool operator==(Jedi &j2)
         {
             return (this->health==j2.health);
         }
-        bool operator!=(Jedi j2)
+        virtual bool operator!=(Jedi &j2)
         {
            return (this->health!=j2.health);
         }
-        bool operator<(Jedi j2)
+        virtual bool operator<(Jedi &j2)
         {
            return (this->health < j2.health);
         }
-        bool operator>(Jedi& j2)
+        virtual bool operator>(Jedi &j2)
         {
           return (this->health > j2.health);
+        }
+        Jedi operator+(int addHealth) const
+        {
+          return Jedi(name, health + addHealth, lightsaberSkill, forcePower);
+        }
+     
+        Jedi operator-(int damage) const 
+        {
+          return Jedi(name, health - damage, lightsaberSkill, forcePower);
         }
     };
 
@@ -123,7 +134,7 @@ namespace starwars
         //getters
         string getName();
         int getHealth();
-        int getLigthsaberSkill();
+        int getLightsaberSkill();
         int getForcePower();
         //Methods
         virtual int attack();
@@ -131,21 +142,30 @@ namespace starwars
         virtual void takeDamage(int);
 
          //Operators
-         bool operator==(Sith s2)
+         virtual bool operator==(Sith &s2)
          {
            return (this->health==s2.health);
          }
-         bool operator!=(Sith s2)
+         virtual bool operator!=(Sith &s2)
          {
            return (this->health!=s2.health);
          }
-         bool operator<(Sith s2)
+         virtual bool operator<(Sith &s2)
          {
             return (this->health < s2.health);
          }
-         bool operator>(Sith s2)
+         virtual bool operator>(Sith &s2)
          {
             return (this->health > s2.health);
+         }
+         Sith operator+(int addHealth) const
+         {
+           return Sith(name, health + addHealth, lightsaberSkill, forcePower);
+         }
+      
+         Sith operator-(int damage) const 
+         {
+           return Sith(name, health - damage, lightsaberSkill, forcePower);
          }
     };
          class Acolyte : public Sith
@@ -160,7 +180,7 @@ namespace starwars
             // Base class constructor already initializes the member variables
             }           
             //Methods
-            int attack(){return Sith::getLigthsaberSkill();}
+            int attack(){return Sith::getLightsaberSkill();}
             void useForce(int power){Sith::useForce(power);}
             void takeDamage(int damage){Sith::takeDamage(damage);}
          };
@@ -171,7 +191,7 @@ namespace starwars
             Darth(string _name, int _health=200 ,int _lightsaberSkill=90, int _forcePower=100) : Sith(_name, _health, _lightsaberSkill, _forcePower)
             {}           
             //Methods
-            int attack(){return Sith::getLigthsaberSkill();}
+            int attack(){return Sith::getLightsaberSkill();}
             void useForce(int power){Sith::useForce(power);}
             void takeDamage(int damage){Sith::takeDamage(damage);}
          };

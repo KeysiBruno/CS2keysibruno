@@ -25,7 +25,7 @@ int starwars::Sith::getHealth()
 {
    return health;
 }
-int starwars::Sith::getLigthsaberSkill()
+int starwars::Sith::getLightsaberSkill()
 {
     return lightsaberSkill;
 }

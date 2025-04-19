@@ -29,39 +29,35 @@ int main()
     RandomSith(random);
     cout<<"Here comes Sith, and attacks ..."<<endl;
 
-    char option;
+    char option2;
     cout<<"Do you want to add your Jedi health?(y/n): ";
-    cin>>option;
-    if(option=='y')
+    cin>>option2;
+    if(option2=='y')
     {
         int addhealth;
         cout<<"Enter additional health: ";
         cin>>addhealth;
-        j1 = j1 + addhealth;
-    }
-    else
-    {
-        return;
+        *j1 = *j1 + addhealth;
     }
     //helping jedi 
-    random = random-5;
+    *random = *random-5;
 
-    while (j1>0 && random>0)
+    while (j1->getHealth()>0 && random->getHealth()>0)
     {
         cout << "\nYou attack!\n";
-        random=random-j1->attack();
+        random->takeDamage(j1->attack());
         cout << random->getName() << " health is: " << random->getHealth() << "\n";
         
-        if (random <= 0) {
+        if (random->getHealth() <= 0) {
             cout << "You win!!!"<<endl;
             break;
         }
         
         cout << "\n" << random->getName() << " strikes back!\n";
-        j1=j1-random->attack();
+        j1->takeDamage(random->attack());
         cout << "Your Jedi's health: " << j1->getHealth() << "\n";
         
-        if (j1 <= 0) {
+        if (j1->getHealth() <= 0) {
             cout << "You loose! "<<endl;
             break;
         }
@@ -79,14 +75,14 @@ void Jedichose(Jedi*& jedi, string name)
    {
     delete jedi;
     jedi = new Guardian(name);
-
    }
    else if(option == 2)
    {
     delete jedi;
     jedi = new Consular(name);
    }
-   else{
+   else
+   {
     cout<<"You entered a wrong number. "<<endl;
    }  
 }
@@ -95,12 +91,12 @@ void RandomSith(Sith*& random)
 {
     random = nullptr;
     int num = rand()%2;
-    if (num==0)
+    if(num==0)
     {
         Acolyte *a1 = new Acolyte("Keysi");
         random = a1;
     }
-    if (num==1)
+    if(num==1)
     {
         Darth *d1 = new Darth("Keysi");
         random = d1;
