@@ -79,25 +79,3 @@ template <class T1>
 void BST<T1>::inOrder()
 {
 }
-
-// Give some data and a node, recursively walk the tree until you get to a nullptr and store the value there.
-// You should ensure that if data < the current node's data, you walk the left. If data > current node's data, walk right.
-// You should check if the value already exists and say so (it's just adding an else with a cout).
-template <class T1>
-Node<T1>* BST<T1>::insertNode(Node<T1>* root, T1 data)
-{
-    return nullptr;
-}
-
-// Wrapper for insertNode. Take in data to pass that and _root to insertNode. Ensure you update _root since if the tree is empty, that would be the new _root.
-template <class T1>
-void BST<T1>::insert(T1 data)
-{
-}
-
-// Search for the word by calling searchData passing in _root and data.
-// If node is found, setData on that node with getData++
-template <class T1>
-void BST<T1>::increment(T1 data)
-{
-}
