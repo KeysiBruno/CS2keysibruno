@@ -42,7 +42,7 @@ Notes: Great project!
  Notes: Similar to HW1.
 
  # HOMEWORK 3
- Name: 
- Date: 
- Grade: 
- Notes: 
+ Name: Overloading operadors
+ Date: ...
+ Grade: 90/100
+ Notes: I don´t know why but i feel i overcomplicated this.
