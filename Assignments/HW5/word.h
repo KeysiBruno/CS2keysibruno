@@ -28,6 +28,8 @@ public:
 // Default constructor, set word to "" and counter to 1
 Word::Word()
 {
+    _word = " ";
+    _counter = 1;
 }
 
 // Parameterized constructor
@@ -39,7 +41,9 @@ Word::Word(string tmpWord, int tmpCounter)
 // You do not need to worry about the counter parameter since this will have its own _counter
 Word Word::operator++(int counter)
 {
-    return Word();
+    Word w1;
+    
+    return w1;
 }
 
 // Check if two Words are equal (compare _word)
