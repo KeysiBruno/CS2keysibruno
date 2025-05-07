@@ -52,3 +52,9 @@ Notes: Great project!
  Date: 06/06/2025
  Grade: 90/100
  Notes: mmm... I have no comments.
+
+ # HOMEWORK 5
+ Name: Word counter
+ Date: 06/07/2025
+ Grade: 90/100
+ Notes: mmm... I have no comments.

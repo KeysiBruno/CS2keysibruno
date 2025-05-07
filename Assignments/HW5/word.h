@@ -35,31 +35,33 @@ Word::Word()
 // Parameterized constructor
 Word::Word(string tmpWord, int tmpCounter)
 {
+    _word = tmpWord;
+    _counter = tmpCounter;
 }
 
 // return a constructed word with the counter incremented
 // You do not need to worry about the counter parameter since this will have its own _counter
-Word Word::operator++(int counter)
+Word Word::operator++(int)
 {
-    Word w1;
-    
-    return w1;
+    Word temp = *this;
+    _counter++;
+    return temp;
 }
 
 // Check if two Words are equal (compare _word)
 bool Word::operator==(const Word &otherWord)
 {
-    return false;
+    return _word==otherWord._word;
 }
 
 // Check if this is less than otherWord
 bool Word::operator<(const Word &otherWord)
 {
-    return false;
+    return _word<otherWord._word;
 }
 
 // Check if this is greater than otherWord
 bool Word::operator>(const Word &otherWord)
 {
-    return false;
+    return _word>otherWord._word;
 }

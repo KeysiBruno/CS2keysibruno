@@ -19,6 +19,7 @@ public:
     void inOrder();
     bool search(T1);
     void remove(T1);
+    void increment(T1);
     ~BST();
 };
 
@@ -188,4 +189,15 @@ template <class T1>
 void BST<T1>::insert(T1 data)
 {
     _root = insertNode(_root, data);
+}
+
+template <class T1>
+void BST<T1>::increment(T1 data)
+{
+    Node<T1>* rand_node = searchData(_root, data);
+    if (rand_node) {
+        T1 temp = rand_node->getData();
+        temp++;
+        rand_node->setData(temp);
+    }
 }
