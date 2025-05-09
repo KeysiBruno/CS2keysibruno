@@ -30,6 +30,8 @@ class List
         // Have to declare a template for friend functions using a different template variable
         template <class T2>
         friend ostream &operator<<(ostream &, const List<T2> &);
+        Node<T1>* getHead() {return _head; }
+        
 };
 
 // set to nullptr and initialize listSize
@@ -93,7 +95,7 @@ T1 List<T1>::front()
     if(_head == nullptr)
     {
         cout<<"The list is empty. "<<endl;
-        return 0;
+        return T1();
     }
     else
     {
@@ -109,7 +111,7 @@ T1 List<T1>::pop_front()
     if(_head == nullptr)
     {
         cout<<"The list is empty"<<endl;
-        return 0;
+        return T1();
     }
     
     Node<T1> *cNode = _head;
@@ -162,7 +164,7 @@ T1 List<T1>::back()
     if(_head == NULL)
    {
        cout<<"The list is empty. "<<endl;
-       return 0;
+       return T1();
    }
     else
     {
@@ -178,7 +180,7 @@ T1 List<T1>::pop_back()
     if(_head == nullptr)
     {
         cout<<"The list is empty. "<<endl;
-        return 0;
+        return T1();
     }
     
     Node<T1> *cNode = _tail;
@@ -204,7 +206,8 @@ template <class T1>
 ostream &operator<<(ostream &os, const List<T1> &list)
 {
     Node<T1>* current = list._head;
-    while (current) {
+    while (current) 
+    {
         os << current->getData() << " ";
         current = current->getNext();
     }
