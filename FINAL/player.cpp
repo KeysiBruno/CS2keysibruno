@@ -7,27 +7,33 @@ Player::Player(string name, int health) : name(name), health(health)
 
 void Player::attack() 
 {
-    cout << name << " attacks!" << endl;
+    cout<<name<<" attacks..."<<endl;
 }
 
-void Player::takeDamage(int amount) 
+void Player::takeDamage(int damage) 
 {
-    health -= amount;
-    if (health < 0) health = 0;
-    cout << name << " takes " << amount << " damage. Remaining health: " << health << endl;
+    health = health-damage;
+    if(health < 0)
+    {
+        health = 0;
+    }
+
+    cout<<name<<" takes "<<damage<<" damage."<<endl;
+    cout<<"Remaining health: "<<health<<endl;
 }
 
-void Player::addToInventory(Item& item) 
+void Player::addToInventory(Item &item) 
 {
     inventory.push_back(item);
-    cout << item.getName() << " added to inventory." << endl;
+    cout <<item.getName()<<" added to inventory."<< endl;
 }
 
-void Player::useItem(int index) 
+void Player::useItem(int num_items) 
 {
-    if (index >= 0 && index < inventory.size()) {
-        inventory[index].use(*this);
-        inventory.erase(inventory.begin() + index);
+    if(num_items>=0 && num_items<inventory.size()) 
+    {
+        inventory[num_items].use(*this);
+        inventory.erase(inventory.begin() + num_items);
     } 
     else 
     {

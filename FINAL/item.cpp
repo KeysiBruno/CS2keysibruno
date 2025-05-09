@@ -5,34 +5,34 @@ using namespace game;
 Item::Item(string name, const string effect, int value) : name(name), effect(effect), value(value) 
 {}
 
-void Item::use(Player& player)
+void Item::use(Player &player)
 {
-    if (effect == "heal") 
+    if(effect=="heal") 
     {
-        cout << "Using " << name << ": Healing " << value << " HP." << endl;
-        player.takeDamage(-value);  // simulate healing
+        cout <<"Using "<<name<<": Healing "<<value<<" HP."<< endl;
+        player.takeDamage(-value);
     } 
-    else if (effect == "boost") 
+    else if(effect=="boost") 
     {
-        cout << "Using " << name << ": Boosting attack temporarily (not implemented)." << endl;
+        cout <<"Using "<<name<<": Boosting attack temporarily (not implemented)."<< endl;
     } 
     else 
     {
-        cout << "Item " << name << " has no recognizable effect." << endl;
+        cout <<"Item "<<name<<" has no recognizable effect."<< endl;
     }
-    }
+}
 
-    string Item::getName()
-    {
-        return name;
-    }
+string Item::getName()
+{
+    return name;
+}
 
-    string Item::getEffect()
-    {
-        return effect;
-    }
+string Item::getEffect()
+{
+    return effect;
+}
 
-    int Item::getValue()
-    {
-        return value;
-    }
+int Item::getValue()
+{
+    return value;
+}

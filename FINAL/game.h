@@ -8,7 +8,6 @@ using namespace std;
 
 namespace game 
 {
-
     class Item;
     class Player;
 
@@ -23,6 +22,7 @@ namespace game
         Item(string name = "", string effect = "", int value = 0);
 
         void use(Player& player);
+        //Getters
         string getName();
         string getEffect();
         int getValue();
@@ -36,12 +36,12 @@ namespace game
         vector<Item> inventory;
 
     public:
-        Player(string name, int health = 100);
+        Player(string name, int health=100);
 
         void attack();
         void takeDamage(int amount);
         void addToInventory(Item& item);
-        void useItem(int index);
+        void useItem(int num_items);
 
         int getHealth();
         string getName();
@@ -61,36 +61,36 @@ namespace game
         void attack();
         void takeDamage(int amount);
 
-        int getDamage()   ;
-        int getHealth()   ;
-        string getName()   ;
-        bool isDefeated()   ;
+        int getDamage();
+        int getHealth();
+        string getName();
+        bool is_defeated();
     };
 
     class Room 
     {
         private:
-            std::string description;
-            Enemy* enemy;
-            Item* item;
+            string description;
+            Enemy *enemy;
+            Item *item;
             int roomNumber;
     
         public:
-            Room(string desc = "", Enemy* e = nullptr, Item* i = nullptr, int number = 0);
+            Room(string d1=" ", Enemy *e = nullptr, Item *i = nullptr, int number = 0);
     
-            std::string getDescription()   ;
-            void setDescription(   std::string& desc);
+            string getDescription();
+            void setDescription(string d1);
     
-            Enemy* getEnemy()   ;
+            Enemy *getEnemy();
             void setEnemy(Enemy* e);
     
-            Item* getItem()   ;
-            void setItem(Item* i);
+            Item *getItem();
+            void setItem(Item *i);
     
             int getRoomNumber()   ;
             void setRoomNumber(int number);
     
-            void clearEnemy();  // after defeated
-            void clearItem();   // after picked up
+            void clearEnemy();
+            void clearItem();
         };
-} // namespace game
+} 

@@ -10,22 +10,58 @@
 using namespace std;
 using namespace game;
 
-void RoomInfo(Room& room) 
+void room_information(Room &);
+void combat(Player &, Enemy &);
+void game_play(Player &, List<Room> &);
+
+int main(int argc, char *argv[])
+{
+    Player player("Cristiano");
+
+    Item *potion = new Item("Potion to recover health...", "heal", 20);
+    Item *gun = new Item("A gun", "boost", 10);
+
+    Enemy *ToxicTaco = new Enemy("ToxicTaco", 30, 5);
+    Enemy *Caike = new Enemy("Caike", 100, 10);
+
+    Room room1("You enter a damp, cold cave. Something stirs...", ToxicTaco, nullptr, 1);
+    Room room2("An eerie silence fills this tCaikeh-lit hallway.", ToxicTaco, potion, 2);
+    Room room3("The sound of metal echoes. A beast awaits!", Caike, gun, 3);
+    Room room4("A golden door stands before you. The treasure is near...", nullptr, nullptr, 4);
+
+    List<Room> dungeon;
+    dungeon.push_back(room1);
+    dungeon.push_back(room2);
+    dungeon.push_back(room3);
+    dungeon.push_back(room4);
+
+    game_play(player, dungeon);
+
+    delete ToxicTaco;
+    delete Caike;
+    delete potion;
+    delete gun;
+
+    return 0;
+}
+
+void room_information(Room &room) 
 {
     cout << "Room "<<room.getRoomNumber()<<": "<<room.getDescription()<<endl;
+    cout<<"\n";
 
-    if (room.getEnemy()) 
+    if(room.getEnemy()) 
     {
-        cout<<"An enemy appears: "<<room.getEnemy()->getName()<<" (HP: "<<room.getEnemy()->getHealth()<<")"<< endl;
+        cout<<"An enemy appears: "<<room.getEnemy()->getName()<<" (Health: "<<room.getEnemy()->getHealth()<<")"<< endl;
     }
 
-    if (room.getItem()) 
+    if(room.getItem()) 
     {
         cout << "You see an item: "<<room.getItem()->getName()<<" (" << room.getItem()->getEffect()<<")" << endl;
     }
 }
 
-void combat(Player& player, Enemy& enemy) 
+void combat(Player &player, Enemy &enemy) 
 {
     while (enemy.getHealth() > 0 && player.getHealth() > 0) 
     {
@@ -35,16 +71,16 @@ void combat(Player& player, Enemy& enemy)
 
         if (choice == 1) 
         {
-            enemy.takeDamage(10);  // player attack (simple fixed damage for now)
+            enemy.takeDamage(10);
             cout << "You attack "<<enemy.getName()<<" for 10 damage!"<< endl;
 
-            if (enemy.isDefeated()) 
+            if (enemy.is_defeated()) 
             {
                 cout<<"You defeated "<<enemy.getName()<<"!"<<endl;
                 break;
             }
 
-            player.takeDamage(enemy.getDamage());  // enemy attacks
+            player.takeDamage(enemy.getDamage());
             cout << enemy.getName() << " attacks you for " << enemy.getDamage() << " damage!" << endl;
 
         } 
@@ -65,25 +101,30 @@ void combat(Player& player, Enemy& enemy)
     }
 }
 
-void gameLoop(Player& player, List<Room>& dungeon) {
-    Node<Room> *current = dungeon.getHead();  // use public getter
+void game_play(Player &player, List<Room> &dungeon) 
+{
+    Node<Room> *current = dungeon.getHead();
 
-    while (current != nullptr && player.getHealth() > 0) {
+    while(current != nullptr && player.getHealth() > 0) 
+    {
         Room room = current->getData();
 
-        RoomInfo(room);
+        room_information(room);
 
-        if (room.getEnemy() != nullptr) {
+        if(room.getEnemy() != nullptr) 
+        {
             combat(player, *room.getEnemy());
             if (player.getHealth() <= 0) break;
         }
 
-        if (room.getItem() != nullptr) {
+        if(room.getItem() != nullptr) 
+        {
             cout << "Do you want to take the item? (y/n): ";
             char takeItem;
             cin >> takeItem;
 
-            if (takeItem == 'y' || takeItem == 'Y') {
+            if(takeItem=='y' || takeItem=='Y') 
+            {
                 player.addToInventory(*room.getItem());
                 room.clearItem();
             }
@@ -93,54 +134,22 @@ void gameLoop(Player& player, List<Room>& dungeon) {
         char moveChoice;
         cin >> moveChoice;
 
-        if (moveChoice == 'y' || moveChoice == 'Y') {
+        if (moveChoice=='y' || moveChoice=='Y') 
+        {
             current = current->getNext();
-        } else {
+        } 
+        else
+        {
             break;
         }
     }
 
-    if (player.getHealth() > 0) {
+    if(player.getHealth() > 0) 
+    {
         cout << "🎉 Congratulations! You completed the dungeon!" << endl;
-    } else {
+    } 
+    else 
+    {
         cout << "☠️ Game Over! You were defeated." << endl;
     }
-}
-
-
-int main() {
-    // Create player
-    Player player("Hero");
-
-    // Create items
-    Item* potion = new Item("Health Potion", "heal", 20);
-    Item* sword = new Item("Iron Sword", "boost", 10);
-
-    // Create enemies
-    Enemy* goblin = new Enemy("Goblin", 30, 5);
-    Enemy* orc = new Enemy("Orc", 50, 10);
-
-    // Create rooms
-    Room room1("You enter a damp, cold cave. Something stirs...", goblin, nullptr, 1);
-    Room room2("An eerie silence fills this torch-lit hallway.", nullptr, potion, 2);
-    Room room3("The sound of metal echoes. A beast awaits!", orc, sword, 3);
-    Room room4("A golden door stands before you. The treasure is near...", nullptr, nullptr, 4);
-
-    // Add rooms to dungeon
-    List<Room> dungeon;
-    dungeon.push_back(room1);
-    dungeon.push_back(room2);
-    dungeon.push_back(room3);
-    dungeon.push_back(room4);
-
-    // Run the game loop
-    gameLoop(player, dungeon);
-
-    // Cleanup
-    delete goblin;
-    delete orc;
-    delete potion;
-    delete sword;
-
-    return 0;
 }

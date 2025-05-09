@@ -3,17 +3,18 @@
 using namespace std;
 using namespace game; 
 
-Room::Room(string desc, Enemy* e, Item* i, int number) : description(desc), enemy(e), item(i), roomNumber(number) 
+Room::Room(string d1, Enemy *e1, Item *i1, int number) : description(d1), enemy(e1), item(i1), roomNumber(number) 
 {}
 
+//Getters
 string Room::getDescription()
 {
     return description;
 }
 
-void Room::setDescription(string &desc) 
+void Room::setDescription(string d1) 
 {
-    description = desc;
+    description = d1;
 }
 
 Enemy* Room::getEnemy()
@@ -21,9 +22,9 @@ Enemy* Room::getEnemy()
     return enemy;
 }
 
-void Room::setEnemy(Enemy *e) 
+void Room::setEnemy(Enemy *e1) 
 {
-    enemy = e;
+    enemy = e1;
 }
 
 Item* Room::getItem()
@@ -31,14 +32,14 @@ Item* Room::getItem()
     return item;
 }
 
-void Room::setItem(Item* i) 
-{
-    item = i;
-}
-
 int Room::getRoomNumber()
 {
     return roomNumber;
+}
+
+void Room::setItem(Item *i1) 
+{
+    item = i1;
 }
 
 void Room::setRoomNumber(int number) 

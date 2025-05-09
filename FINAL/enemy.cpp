@@ -7,16 +7,21 @@ Enemy::Enemy(string name, int health, int damage) : name(name), health(health), 
 
 void Enemy::attack()
 {
-    cout << name << " attacks for " << damage << " damage!" << endl;
+    cout<<name<<" attacks with: "<<damage<<" damage!"<<endl;
 }
 
-void Enemy::takeDamage(int amount)
+void Enemy::takeDamage(int damage)
 {
-    health -= amount;
-    if (health < 0) health = 0;
-    cout << name << " takes " << amount << " damage. Remaining health: " << health << endl;
+    health = health-damage;
+    if(health < 0)
+    {
+        health = 0;
+    } 
+    cout<<name<<" takes "<<damage<<" damage."<<endl;
+    cout<<"Remaining health: "<<health<<endl;
 }
 
+//Getters
 int Enemy::getDamage()
 {
     return damage;
@@ -32,7 +37,7 @@ string Enemy::getName()
     return name;
 }
 
-bool Enemy::isDefeated()
+bool Enemy::is_defeated()
 {
     return health <= 0;
 }
