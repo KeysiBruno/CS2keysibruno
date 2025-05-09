@@ -2,7 +2,7 @@
 
 using namespace game; 
 
-Player::Player(string name, int health) : name(name), health(health) 
+Player::Player(string name, int health, int forcePower) : name(name), health(health), forcePower(forcePower)
 {}
 
 void Player::attack() 
@@ -51,11 +51,16 @@ string Player::getName()
     return name;
 }
 
+int Player::getFocePower()
+{
+    return forcePower;
+}
+
 void Player::displayInventory()
 {
     cout << name << "'s Inventory:" << endl;
     for (int i = 0; i < inventory.size(); ++i)
     {
-        cout << i << ": " << inventory[i].getName() << " (" << inventory[i].getEffect() << ")" << endl;
+        cout<<i<<": "<<inventory[i].getName()<<" ("<<inventory[i].getEffect()<<")"<<endl;
     }
 }

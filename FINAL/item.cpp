@@ -14,11 +14,12 @@ void Item::use(Player &player)
     } 
     else if(effect=="boost") 
     {
-        cout <<"Using "<<name<<": Boosting attack temporarily (not implemented)."<< endl;
+        cout <<"Using "<<name<<": Boosting attack."<< endl;
+        player.getFocePower()+value;
     } 
     else 
     {
-        cout <<"Item "<<name<<" has no recognizable effect."<< endl;
+        cout<<"Item "<<name<<" has no recognizable effect."<<endl;
     }
 }
 

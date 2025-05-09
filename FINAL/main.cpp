@@ -16,29 +16,35 @@ void game_play(Player &, List<Room> &);
 
 int main(int argc, char *argv[])
 {
-    Player player("Cristiano");
+    Player player("Cristiano", 100, 10);
 
     Item *potion = new Item("Potion to recover health...", "heal", 20);
-    Item *gun = new Item("A gun", "boost", 10);
+    Item *gun = new Item("A gun", "boost", 15);
 
     Enemy *ToxicTaco = new Enemy("ToxicTaco", 30, 5);
-    Enemy *Caike = new Enemy("Caike", 100, 10);
+    Enemy *Caike = new Enemy("Caike", 50, 10);
+    Enemy *final_boss = new Enemy("Final boss", 80, 13);
 
     Room room1("You enter a damp, cold cave. Something stirs...", ToxicTaco, nullptr, 1);
-    Room room2("An eerie silence fills this tCaikeh-lit hallway.", ToxicTaco, potion, 2);
-    Room room3("The sound of metal echoes. A beast awaits!", Caike, gun, 3);
-    Room room4("A golden door stands before you. The treasure is near...", nullptr, nullptr, 4);
+    Room room2("An weird silence fills, this is Caike wainting for killing you, but ", nullptr, potion, 2);
+    Room room3("The sound of metal echoes. A beast awaits!", Caike, nullptr, 3);
+    Room room4("you found a chest with something inside...", nullptr, gun, 4);
+    Room room5("The final boss found you, it's time to fight...", final_boss, nullptr, 5);
+    Room room6("A golden door stands before you. The treasure is near...", nullptr, nullptr, 6);
 
     List<Room> dungeon;
     dungeon.push_back(room1);
     dungeon.push_back(room2);
     dungeon.push_back(room3);
     dungeon.push_back(room4);
+    dungeon.push_back(room5);
+    dungeon.push_back(room6);
 
     game_play(player, dungeon);
 
     delete ToxicTaco;
     delete Caike;
+    delete final_boss;
     delete potion;
     delete gun;
 
@@ -57,7 +63,7 @@ void room_information(Room &room)
 
     if(room.getItem()) 
     {
-        cout << "You see an item: "<<room.getItem()->getName()<<" (" << room.getItem()->getEffect()<<")" << endl;
+        cout<<"You see an item: "<<room.getItem()->getName()<<" (" << room.getItem()->getEffect()<<")" << endl;
     }
 }
 
@@ -69,10 +75,10 @@ void combat(Player &player, Enemy &enemy)
         int choice;
         cin >> choice;
 
-        if (choice == 1) 
+        if(choice == 1) 
         {
-            enemy.takeDamage(10);
-            cout << "You attack "<<enemy.getName()<<" for 10 damage!"<< endl;
+            enemy.takeDamage(player.getFocePower());
+            cout << "You attack "<<enemy.getName()<<" for "<<player.getFocePower()<<" damage!"<< endl;
 
             if (enemy.is_defeated()) 
             {
@@ -81,10 +87,10 @@ void combat(Player &player, Enemy &enemy)
             }
 
             player.takeDamage(enemy.getDamage());
-            cout << enemy.getName() << " attacks you for " << enemy.getDamage() << " damage!" << endl;
+            cout << enemy.getName()<<" attacks you for "<< enemy.getDamage()<<" damage!"<< endl;
 
         } 
-        else if (choice == 2) 
+        else if(choice == 2) 
         {
             cout<<"You flee from the battle!"<<endl;
             break;
@@ -95,7 +101,7 @@ void combat(Player &player, Enemy &enemy)
         }
     }
 
-    if (player.getHealth() <= 0) 
+    if(player.getHealth()<= 0) 
     {
         cout<<"You were defeated!"<<endl;
     }
@@ -134,7 +140,7 @@ void game_play(Player &player, List<Room> &dungeon)
         char moveChoice;
         cin >> moveChoice;
 
-        if (moveChoice=='y' || moveChoice=='Y') 
+        if(moveChoice=='y' || moveChoice=='Y') 
         {
             current = current->getNext();
         } 
@@ -146,10 +152,10 @@ void game_play(Player &player, List<Room> &dungeon)
 
     if(player.getHealth() > 0) 
     {
-        cout << "🎉 Congratulations! You completed the dungeon!" << endl;
+        cout << "You completed the dungeon! WIN" << endl;
     } 
     else 
     {
-        cout << "☠️ Game Over! You were defeated." << endl;
+        cout << "Game Over! You were defeated." << endl;
     }
 }

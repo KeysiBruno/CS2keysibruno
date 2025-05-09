@@ -33,10 +33,11 @@ namespace game
     private:
         string name;
         int health;
+        int forcePower;
         vector<Item> inventory;
 
     public:
-        Player(string name, int health=100);
+        Player(string name, int health=100, int forcePower);
 
         void attack();
         void takeDamage(int amount);
@@ -45,6 +46,7 @@ namespace game
 
         int getHealth();
         string getName();
+        int getFocePower();
         void displayInventory();
     };
 
