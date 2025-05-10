@@ -111,7 +111,7 @@ void game_play(Player &player, List<Room> &dungeon)
 {
     Node<Room> *current = dungeon.getHead();
 
-    while(current != nullptr && player.getHealth() > 0) 
+    while(current!=nullptr && player.getHealth()>0) 
     {
         Room room = current->getData();
 
