@@ -37,7 +37,7 @@ namespace game
         vector<Item> inventory;
 
     public:
-        Player(string name, int health=100, int forcePower);
+        Player(string name="", int health=0, int forcePower=0);
 
         void attack();
         void takeDamage(int amount);
@@ -48,6 +48,8 @@ namespace game
         string getName();
         int getFocePower();
         void displayInventory();
+
+        Player* operator+(int);
     };
 
     class Enemy 

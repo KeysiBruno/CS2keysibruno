@@ -64,3 +64,9 @@ void Player::displayInventory()
         cout<<i<<": "<<inventory[i].getName()<<" ("<<inventory[i].getEffect()<<")"<<endl;
     }
 }
+
+Player* Player::operator+(int value)
+{
+    this->forcePower=this->forcePower + value;
+    return this;
+}

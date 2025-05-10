@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
 {
     Player player("Cristiano", 100, 10);
 
-    Item *potion = new Item("Potion to recover health...", "heal", 20);
-    Item *gun = new Item("A gun", "boost", 15);
+    Item *potion = new Item("Potion to recover health...", "heal", 50);
+    Item *gun = new Item("A gun", "boost", 30);
 
     Enemy *ToxicTaco = new Enemy("ToxicTaco", 30, 5);
     Enemy *Caike = new Enemy("Caike", 50, 10);
-    Enemy *final_boss = new Enemy("Final boss", 80, 13);
+    Enemy *final_boss = new Enemy("Final boss", 150, 20);
 
     Room room1("You enter a damp, cold cave. Something stirs...", ToxicTaco, nullptr, 1);
     Room room2("An weird silence fills, this is Caike wainting for killing you, but ", nullptr, potion, 2);
@@ -120,7 +120,7 @@ void game_play(Player &player, List<Room> &dungeon)
         if(room.getEnemy() != nullptr) 
         {
             combat(player, *room.getEnemy());
-            if (player.getHealth() <= 0) break;
+            if(player.getHealth() <= 0) break;
         }
 
         if(room.getItem() != nullptr) 
@@ -132,6 +132,8 @@ void game_play(Player &player, List<Room> &dungeon)
             if(takeItem=='y' || takeItem=='Y') 
             {
                 player.addToInventory(*room.getItem());
+                Item i2 = *room.getItem();
+                i2.use(player);
                 room.clearItem();
             }
         }

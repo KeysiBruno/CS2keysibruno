@@ -15,7 +15,7 @@ void Item::use(Player &player)
     else if(effect=="boost") 
     {
         cout <<"Using "<<name<<": Boosting attack."<< endl;
-        player.getFocePower()+value;
+        player + value;
     } 
     else 
     {
