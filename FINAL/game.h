@@ -41,7 +41,7 @@ namespace game
 
         void attack();
         void takeDamage(int amount);
-        void addToInventory(Item& item);
+        void addToInventory(Item item);
         void useItem(int num_items);
 
         int getHealth();

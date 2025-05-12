@@ -22,7 +22,7 @@ void Player::takeDamage(int damage)
     cout<<"Remaining health: "<<health<<endl;
 }
 
-void Player::addToInventory(Item &item) 
+void Player::addToInventory(Item item) 
 {
     inventory.push_back(item);
     cout <<item.getName()<<" added to inventory."<< endl;
@@ -37,7 +37,7 @@ void Player::useItem(int num_items)
     } 
     else 
     {
-        cout << "Invalid item index!" << endl;
+        cout << "Invalid item." << endl;
     }
 }
 

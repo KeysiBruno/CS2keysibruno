@@ -71,7 +71,7 @@ void combat(Player &player, Enemy &enemy)
 {
     while (enemy.getHealth() > 0 && player.getHealth() > 0) 
     {
-        cout<<"What will you do? (1: Attack, 2: Flee): ";
+        cout<<"What will you do? (Press 1 to attack: ";
         int choice;
         cin >> choice;
 
