@@ -27,20 +27,17 @@ class List
         T1 back();
 
         bool operator==(const List<T1>&);
-        // Have to declare a template for friend functions using a different template variable
         template <class T2>
         friend ostream &operator<<(ostream &, const List<T2> &);
         Node<T1>* getHead() {return _head; }
         
 };
 
-// set to nullptr and initialize listSize
 template <class T1>
 List<T1>::List() : _head(nullptr), _tail(nullptr), listSize(0)
 {
 }
 
-// iteratively delete the list starting at _head
 template <class T1>
 List<T1>::~List()
 {
@@ -50,22 +47,18 @@ List<T1>::~List()
     }
 }
 
-// return true if the list is empty, false otherwise.
-// Do not just check listSize, should actually check _head and _tail
 template <class T1>
 bool List<T1>::empty()
 {
     return (_head==nullptr)?true:false;
 }
 
-// return number of elements in list
 template <class T1>
 size_t List<T1>::size()
 {
     return listSize;
 }
 
-// add an element to the beginning of the list, updating _head
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
@@ -87,8 +80,6 @@ void List<T1>::push_front(T1 data)
    listSize++;
 }
 
-// return the first element in the list.
-// if the list is empty, print that out and return 0
 template <class T1>
 T1 List<T1>::front()
 {
@@ -103,8 +94,6 @@ T1 List<T1>::front()
     }
 }
 
-// remove the first element from the list and return its data
-// if the list is empty, print that out and return 0;
 template <class T1>
 T1 List<T1>::pop_front()
 {
@@ -119,8 +108,8 @@ T1 List<T1>::pop_front()
     
     _head = _head->getNext();
     
-    if(_head == nullptr) {
-        // List becomes empty
+    if(_head == nullptr) 
+    {
         _tail = nullptr;
     }
     else {
@@ -132,7 +121,6 @@ T1 List<T1>::pop_front()
     return data;
 }
 
-// add an element to the end of hte list, updating _tail
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
@@ -143,7 +131,6 @@ void List<T1>::push_back(T1 data)
 
     if(_head == nullptr)
     {
-        // List is empty, set both head and tail to the new node
         _head = new_node;
         _tail = new_node;
     }
@@ -156,8 +143,6 @@ void List<T1>::push_back(T1 data)
     listSize++;
 }
 
-// return the last element in the list.
-// if the list is empty, print that out and return 0
 template <class T1>
 T1 List<T1>::back()
 {
@@ -172,8 +157,6 @@ T1 List<T1>::back()
     }
 }
 
-// remove the last element from the list and return its data
-// if the list is empty, print that out and return 0;
 template <class T1>
 T1 List<T1>::pop_back()
 {
@@ -188,8 +171,8 @@ T1 List<T1>::pop_back()
     
     _tail = _tail->getPrev();
     
-    if(_tail == nullptr) {
-        // List becomes empty
+    if(_tail == nullptr) 
+    {
         _head = nullptr;
     }
     else {
@@ -201,7 +184,6 @@ T1 List<T1>::pop_back()
     return data;
 }
 
-// overloading <<, should return a space separated stream of all of the elements
 template <class T1>
 ostream &operator<<(ostream &os, const List<T1> &list)
 {
@@ -214,7 +196,6 @@ ostream &operator<<(ostream &os, const List<T1> &list)
     return os;
 }
 
-// should iterate through each list to check that they are exactly the same
 template <class T1>
 bool List<T1>::operator==(const List<T1>& rhs)
 {
