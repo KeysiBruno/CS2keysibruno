@@ -90,11 +90,6 @@ void combat(Player &player, Enemy &enemy)
             cout << enemy.getName()<<" attacks you for "<< enemy.getDamage()<<" damage!"<< endl;
 
         } 
-        else if(choice == 2) 
-        {
-            cout<<"You flee from the battle."<<endl;
-            break;
-        }
         else 
         {
             cout<<"Invalid choice."<<endl;
@@ -148,6 +143,7 @@ void game_play(Player &player, List<Room> &dungeon)
         } 
         else
         {
+            cout<<"I knew it, you're COWARD";
             break;
         }
     }
