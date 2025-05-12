@@ -71,7 +71,7 @@ void combat(Player &player, Enemy &enemy)
 {
     while (enemy.getHealth() > 0 && player.getHealth() > 0) 
     {
-        cout<<"What will you do? (Press 1 to attack: ";
+        cout<<"What will you do? (Press 1 to attack): ";
         int choice;
         cin >> choice;
 
@@ -92,18 +92,18 @@ void combat(Player &player, Enemy &enemy)
         } 
         else if(choice == 2) 
         {
-            cout<<"You flee from the battle!"<<endl;
+            cout<<"You flee from the battle."<<endl;
             break;
         }
         else 
         {
-            cout<<"Invalid choice!"<<endl;
+            cout<<"Invalid choice."<<endl;
         }
     }
 
     if(player.getHealth()<= 0) 
     {
-        cout<<"You were defeated!"<<endl;
+        cout<<"You were defeated :("<<endl;
     }
 }
 
