@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/keysibrunoarroyo/Clone Lab1/CS2keysibruno/Labs/Lab 1",
-      "program": "/Users/keysibrunoarroyo/Clone Lab1/CS2keysibruno/Labs/Lab 1/build/Debug/outDebug"
+      "cwd": "/Users/keysibrunoarroyo/Clone Lab1/CS2keysibruno/FINAL",
+      "program": "/Users/keysibrunoarroyo/Clone Lab1/CS2keysibruno/FINAL/build/Debug/outDebug"
     }
   ]
 }

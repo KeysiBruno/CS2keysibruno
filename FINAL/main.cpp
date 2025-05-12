@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 {
     Player player("Cristiano", 100, 10);
 
-    Item *potion = new Item("Potion to recover health...", "heal", 50);
-    Item *gun = new Item("A gun", "boost", 30);
+    Item *potion = new Item("Potion to regain health...", "heal", 50);
+    Item *gun = new Item("A gun to increase attack power", "boost", 30);
 
     Enemy *ToxicTaco = new Enemy("ToxicTaco", 30, 5);
     Enemy *Caike = new Enemy("Caike", 50, 10);
@@ -148,7 +148,7 @@ void game_play(Player &player, List<Room> &dungeon)
         }
     }
 
-    if(player.getHealth() > 0) 
+    if(player.getHealth()>0) 
     {
         cout << "You completed the dungeon! WIN" << endl;
     } 
