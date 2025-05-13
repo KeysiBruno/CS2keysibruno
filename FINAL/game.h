@@ -19,7 +19,7 @@ namespace game
         int value;
 
     public:
-        Item(string name = "", string effect = "", int value = 0);
+        Item(string name="", string effect ="", int value=0);
 
         void use(Player& player);
         //Getters

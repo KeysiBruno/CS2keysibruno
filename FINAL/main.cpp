@@ -69,7 +69,7 @@ void room_information(Room &room)
 
 void combat(Player &player, Enemy &enemy) 
 {
-    while (enemy.getHealth() > 0 && player.getHealth() > 0) 
+    while(enemy.getHealth() > 0 && player.getHealth() > 0) 
     {
         cout<<"What will you do? (Press 1 to attack): ";
         int choice;
