@@ -93,6 +93,7 @@ void combat(Player &player, Enemy &enemy)
         else 
         {
             cout<<"Invalid choice."<<endl;
+            break;
         }
     }
 
