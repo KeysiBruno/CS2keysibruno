@@ -69,13 +69,13 @@ void room_information(Room &room)
 
 void combat(Player &player, Enemy &enemy) 
 {
-    while(enemy.getHealth() > 0 && player.getHealth() > 0) 
+    while(enemy.getHealth()>0 && player.getHealth()>0) 
     {
         cout<<"What will you do? (Press 1 to attack): ";
         int choice;
         cin >> choice;
 
-        if(choice == 1) 
+        if(choice==1) 
         {
             enemy.takeDamage(player.getFocePower());
             cout << "You attack "<<enemy.getName()<<" for "<<player.getFocePower()<<" damage!"<< endl;
@@ -150,10 +150,10 @@ void game_play(Player &player, List<Room> &dungeon)
 
     if(player.getHealth()>0) 
     {
-        cout << "You completed the dungeon! WIN" << endl;
+        cout<<"You completed the dungeon! WIN"<<endl;
     } 
     else 
     {
-        cout << "Game Over! You were defeated." << endl;
+        cout<<"Game Over! You were defeated."<<endl;
     }
 }
