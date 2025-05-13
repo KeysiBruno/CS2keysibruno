@@ -60,7 +60,7 @@ namespace game
         int damage;
 
     public:
-        Enemy(string name, int health, int damage);
+        Enemy(string name="", int health=0, int damage=0);
 
         void attack();
         void takeDamage(int amount);
@@ -80,7 +80,7 @@ namespace game
             int roomNumber;
     
         public:
-            Room(string d1=" ", Enemy *e = nullptr, Item *i = nullptr, int number = 0);
+            Room(string d1="", Enemy *e=nullptr, Item *i=nullptr, int number=0);
     
             string getDescription();
             void setDescription(string d1);

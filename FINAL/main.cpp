@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     Room room3("The sound of metal echoes. A beast awaits!", Caike, nullptr, 3);
     Room room4("you found a chest with something inside...", nullptr, gun, 4);
     Room room5("The final boss found you, it's time to fight...", final_boss, nullptr, 5);
-    Room room6("A golden door stands before you. The treasure is near...", nullptr, nullptr, 6);
+    Room room6("There are no more enemies left, you defeated them all.", nullptr, nullptr, 6);
 
     List<Room> dungeon;
     dungeon.push_back(room1);
